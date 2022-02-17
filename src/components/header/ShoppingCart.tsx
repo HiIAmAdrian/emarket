@@ -23,15 +23,11 @@ export default function ShoppingCart() {
   const handleClose = () => setOpen(false);
 
   return (
-    <div style={{
-      display: "inline",
-      position: "relative",
-      float: "right"
-    }}>
+    <div>
       <Button 
         onClick={handleOpen} 
       >
-        <ShoppingCartIcon></ShoppingCartIcon>     
+        <ShoppingCartIcon color="secondary"></ShoppingCartIcon>     
       </Button>
       <Modal
         open={open}
