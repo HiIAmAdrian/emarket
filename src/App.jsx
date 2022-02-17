@@ -5,19 +5,22 @@ import Header from "./components/header/Header";
 
 function App() {
   return (
-    <div className="App">
-      <CssBaseline enableColorScheme />
-      <Grid container direction="column">
-        <Grid item>
-         <Header/>
+      <React.Fragment>
+        <CssBaseline enableColorScheme />
+        <Grid container direction="column" spacing={2}>
+          <Grid item>
+            <Header/>
+          </Grid>
+          <Grid item container>
+              <Grid item xs={2} sm={2} md={1} xl={1}/>
+              <Grid item xs={10} sm={8} md={10} xl={10}>
+                <ShopList/>
+              </Grid>
+              <Grid item xs={false} sm={2} md={1} xl={1}/> 
+          </Grid>
         </Grid>
-        <Grid item>
-          <Grid item sm={2}/>
-          <ShopList/>
-          <Grid item sm={2}/>
-        </Grid>
-      </Grid>
-    </div>
+      </React.Fragment>
+
   );
 }
 

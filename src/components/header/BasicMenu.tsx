@@ -15,9 +15,7 @@ export default function BasicMenu() {
   };
 
   return (
-    <div style={{
-      display: "inline"
-    }}>
+    <div>
       <Button
         id="basic-button"
         aria-controls={open ? 'basic-menu' : undefined}

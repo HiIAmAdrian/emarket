@@ -27,14 +27,14 @@ function ShopList() {
     }, [dispatch]);
 
     const getShopItemCard = (shopCardObj: ShopItem) => 
-    <Grid key={shopCardObj.id} item xs={12} sm={4}>
+    <Grid key={shopCardObj.id} item xs={10} sm={6} md={4} lg={3} xl={2}>
         <ItemCard {...shopCardObj}/>
     </Grid>
 
     return ( 
         <Grid container spacing={2}>
             {list.map(shopCardObj => getShopItemCard(shopCardObj))}
-        </Grid>
+        </Grid>    
     );
 
 
