@@ -27,7 +27,7 @@ function ShopList() {
     }, [dispatch]);
 
     const getShopItemCard = (shopCardObj: ShopItem) => 
-    <Grid key={shopCardObj.id} item xs={10} sm={6} md={4} lg={3} xl={2}>
+    <Grid sx={{display: 'flex'}} key={shopCardObj.id} item xs={10} sm={6} md={4} lg={3} xl={2}>
         <ItemCard {...shopCardObj}/>
     </Grid>
 

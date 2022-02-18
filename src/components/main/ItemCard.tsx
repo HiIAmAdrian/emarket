@@ -50,9 +50,16 @@ export default function ItemCard(props: ShopItem) {
 
   return (
     <Card sx={{ 
+        width:"100%",
         maxWidth: 345,
+        display: 'flex',
+        justifyContent: 'space-between',
+        flexDirection: 'column'
         }}>
         <CardMedia
+        sx={{
+          objectFit: "contain"
+        }}
         component="img"
         height="194"
         image={image}
