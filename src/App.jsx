@@ -3,6 +3,7 @@ import { CssBaseline, Grid } from '@mui/material';
 import ShopList from "./components/product page/ShopList.tsx";
 import Header from "./components/header/Header";
 import SignIn from "./components/user handle pages/SignIn";
+import SignUp from "./components/user handle pages/SignUp"
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 function App() {
@@ -24,9 +25,11 @@ function App() {
                     <ShopList/>
                   </Grid>
                   <Grid item xs={false} sm={2} md={1} xl={1}/>
-                </React.Fragment>}
+                </React.Fragment>
+                }
               />
               <Route path="/signin" element={<SignIn/>}/>
+              <Route path="/signup" element={<SignUp/>}/>
             </Routes> 
           </Grid>
         </Grid>

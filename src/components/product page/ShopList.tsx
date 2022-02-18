@@ -24,6 +24,7 @@ function ShopList() {
 
     useEffect(() => {
         dispatch(getItems());
+        console.log("da");
     }, [dispatch]);
 
     const getShopItemCard = (shopCardObj: ShopItem) => 
