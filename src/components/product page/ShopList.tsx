@@ -31,7 +31,7 @@ function ShopList() {
         <ItemCard {...shopCardObj}/>
     </Grid>
 
-    return ( 
+    return (
         <Grid container spacing={2}>
             {list.map(shopCardObj => getShopItemCard(shopCardObj))}
         </Grid>    
