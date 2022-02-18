@@ -11,6 +11,7 @@ import Typography from '@mui/material/Typography';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import Rating from '@mui/material/Rating';
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
@@ -70,11 +71,14 @@ export default function ItemCard(props: ShopItem) {
           null
         }
         title={title}
-        subheader={rating.rate}
       />
+        <Rating sx={{
+          alignSelf: 'center'
+        }} name="simple-controlled" value={rating.rate} precision={0.25} readOnly/>
+     
       <CardContent>
         <Typography align="center" variant="h4" color="red">
-          {price}
+          {Math.floor(price).toString() + (price % 1).toFixed(2).substring(1) + " Lei"}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
