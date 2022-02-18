@@ -1,6 +1,7 @@
-import { AppBar, Icon } from "@mui/material";
+import { AppBar } from "@mui/material";
 import BasicMenu from "./BasicMenu";
 import ShoppingCart from "./ShoppingCart";
+import StorefrontSharpIcon from '@mui/icons-material/StorefrontSharp';
 
 function Header() {
     return (  
@@ -14,12 +15,7 @@ function Header() {
           position="static"
         >
           <BasicMenu />
-          <Icon sx={{
-            height: 60,
-            width: 60,
-          }}>
-            <img src={"https://cdn.cdnlogo.com/logos/s/47/shop-and-save.svg"} alt="dadadaOteluEViataMea" />
-          </Icon>
+          <StorefrontSharpIcon/>
           <ShoppingCart />
         </AppBar>
        );
