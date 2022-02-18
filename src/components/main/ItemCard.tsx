@@ -12,6 +12,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Rating from '@mui/material/Rating';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
@@ -84,11 +85,11 @@ export default function ItemCard(props: ShopItem) {
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
+      <IconButton aria-label="share">
+          <AddShoppingCartIcon />
+        </IconButton>
         <IconButton aria-label="add to favorites">
           <FavoriteIcon />
-        </IconButton>
-        <IconButton aria-label="share">
-          <ShareIcon />
         </IconButton>
         <ExpandMore
           expand={expanded}
@@ -96,6 +97,9 @@ export default function ItemCard(props: ShopItem) {
           aria-expanded={expanded}
           aria-label="show more"
         >
+          <Typography variant="button">
+            See Details
+          </Typography>
           <ExpandMoreIcon />
         </ExpandMore>
       </CardActions>
@@ -103,10 +107,10 @@ export default function ItemCard(props: ShopItem) {
         <CardContent>
           <Typography paragraph></Typography>
           <Typography paragraph>
-            {category}
+            <b>Category:</b> {category}
           </Typography>
           <Typography paragraph>
-            {description}
+            <b>Description:</b> {description}
           </Typography>
         </CardContent>
       </Collapse>
