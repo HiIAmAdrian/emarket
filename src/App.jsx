@@ -1,12 +1,22 @@
-import * as React from "react";
+import React, {useEffect} from "react";
 import { CssBaseline, Grid } from '@mui/material';
 import ShopList from "./components/product page/ShopList.tsx";
 import Header from "./components/header/Header";
-import SignIn from "./components/user handle pages/SignIn";
+import LogIn from "./components/user handle pages/LogIn";
 import SignUp from "./components/user handle pages/SignUp"
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { useDispatch } from "react-redux";
+import { getItems } from './redux/reducer';
+
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getItems());
+    console.log("da");
+  }, [dispatch]);
+
   return (
       <BrowserRouter>
         <CssBaseline enableColorScheme />
@@ -28,7 +38,7 @@ function App() {
                 </React.Fragment>
                 }
               />
-              <Route path="/signin" element={<SignIn/>}/>
+              <Route path="/login" element={<LogIn/>}/>
               <Route path="/signup" element={<SignUp/>}/>
             </Routes> 
           </Grid>

@@ -12,6 +12,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import axios from 'axios';
 
 function Copyright(props: any) {
   return (
@@ -28,15 +29,20 @@ function Copyright(props: any) {
 
 const theme = createTheme();
 
-export default function SignIn() {
+export default function LogIn() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     // eslint-disable-next-line no-console
     console.log({
-      email: data.get('email'),
+      username: data.get('username'),
       password: data.get('password'),
     });
+
+    axios.post('https://fakestoreapi.com/auth/login', {
+      username: data.get('username'),
+      password: data.get('password')
+    }).then(res => console.log(res.data)).catch(err => console.log(err));
   };
 
   return (
@@ -55,17 +61,17 @@ export default function SignIn() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            Log in
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"
               required
               fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
+              id="username"
+              label="Username"
+              name="username"
+              autoComplete="username"
               autoFocus
             />
             <TextField
@@ -88,7 +94,7 @@ export default function SignIn() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign In
+              Log In
             </Button>
             <Grid container>
               <Grid item xs>
