@@ -105,7 +105,10 @@ export default function ItemCard(props: ShopItem) {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          <Typography paragraph></Typography>
+          <Typography paragraph>
+            <b>Rating Value: </b>{rating.rate} <br/>
+            <b>Number of Ratings: </b>{rating.count}
+          </Typography>
           <Typography paragraph>
             <b>Category:</b> {category}
           </Typography>
