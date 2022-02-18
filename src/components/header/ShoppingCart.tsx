@@ -6,7 +6,7 @@ import Modal from '@mui/material/Modal';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 const style = {
-  position: 'absolute' as 'absolute',
+  position: 'absolute' as const,
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
@@ -24,10 +24,8 @@ export default function ShoppingCart() {
 
   return (
     <div>
-      <Button 
-        onClick={handleOpen} 
-      >
-        <ShoppingCartIcon color="secondary"></ShoppingCartIcon>     
+      <Button onClick={handleOpen}>
+        <ShoppingCartIcon color="secondary"></ShoppingCartIcon>
       </Button>
       <Modal
         open={open}

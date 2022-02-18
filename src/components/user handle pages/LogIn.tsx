@@ -13,13 +13,20 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { login } from '../../redux/reducerAuth';
 
-function Copyright(props: any) {
+function Copyright() {
   return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
+    <Typography
+      variant="body2"
+      color="text.secondary"
+      align="center"
+      sx={{ mt: 8, mb: 4 }}
+    >
       {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
+      <Link color="inherit" href="https://findtheinvisiblecow.com/">
+        DO NOT CLICK HERE
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -30,20 +37,23 @@ function Copyright(props: any) {
 const theme = createTheme();
 
 export default function LogIn() {
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const dispatch = useDispatch();
+
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    // eslint-disable-next-line no-console
-    console.log({
-      username: data.get('username'),
-      password: data.get('password'),
-    });
 
-    axios.post('https://fakestoreapi.com/auth/login', {
-      username: data.get('username'),
-      password: data.get('password')
-    }).then(res => console.log(res.data)).catch(err => console.log(err));
-  };
+    axios
+      .post('https://fakestoreapi.com/auth/login', {
+        username: data.get('username'),
+        password: data.get('password'),
+      })
+      .then((res) => {
+        console.log(res.data);
+        dispatch(login(res.data));
+      })
+      .catch((err) => console.log(err));
+  }
 
   return (
     <ThemeProvider theme={theme}>
@@ -63,7 +73,12 @@ export default function LogIn() {
           <Typography component="h1" variant="h5">
             Log in
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <Box
+            component="form"
+            onSubmit={handleSubmit}
+            noValidate
+            sx={{ mt: 1 }}
+          >
             <TextField
               margin="normal"
               required
@@ -110,7 +125,7 @@ export default function LogIn() {
             </Grid>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 8, mb: 4 }} />
+        <Copyright />
       </Container>
     </ThemeProvider>
   );

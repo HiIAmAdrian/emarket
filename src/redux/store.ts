@@ -1,9 +1,15 @@
 import { configureStore } from '@reduxjs/toolkit';
-import shopList from './reducer'
+import shopList from './reducerProducts';
+import auth from './reducerAuth';
 
-const store = configureStore({reducer: {shopList: shopList.reducer}});
+const store = configureStore({reducer: {
+    shopList: shopList.reducer,
+    auth: auth.reducer,
+}});
 
 type RootState = ReturnType<typeof store.getState>
 
 export const getShopList = (state:RootState) => state.shopList.shopList;
+export const getShopCartList = (state: RootState) => state.auth.shopCartList;
+
 export default store;

@@ -4,10 +4,14 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { logout } from '../../redux/reducerAuth';
 
 export default function BasicMenu() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
+  const dispatch = useDispatch();
+
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
@@ -36,9 +40,14 @@ export default function BasicMenu() {
         }}
       >
         <MenuItem onClick={handleClose}><Link to="/products">Products</Link></MenuItem>
-        <MenuItem onClick={handleClose}><Link to="/login">Log In</Link></MenuItem>
-        <MenuItem onClick={handleClose}><Link to="/signup">Sign Up</Link></MenuItem>
-        <MenuItem onClick={handleClose}>Logout</MenuItem>
+              <MenuItem onClick={handleClose}><Link to="/login">Log In</Link></MenuItem>
+              <MenuItem onClick={handleClose}><Link to="/signup">Sign Up</Link></MenuItem>
+              <MenuItem onClick={() => {
+                dispatch(logout);
+                console.log("da ba");
+                setAnchorEl(null);
+              }}
+        >Logout</MenuItem>
       </Menu>
     </div>
   );

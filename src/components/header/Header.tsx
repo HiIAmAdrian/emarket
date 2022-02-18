@@ -12,7 +12,7 @@ function Header() {
             display: "flex-row",
             justifyContent: "space-between",
             alignItems: "center",
-            flexDirection:"row"
+            flexDirection:"row",
           }}
           position="fixed"
         >
