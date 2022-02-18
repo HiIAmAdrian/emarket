@@ -78,7 +78,9 @@ export default function ItemCard(props: ShopItem) {
      
       <CardContent>
         <Typography align="center" variant="h4" color="red">
-          {Math.floor(price).toString() + (price % 1).toFixed(2).substring(1) + " Lei"}
+          {Math.floor(price)}
+          <sup style={{fontSize: 17}}>{(price % 1).toFixed(2).substring(2)}</sup>
+          {" Lei"}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
