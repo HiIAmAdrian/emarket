@@ -6,9 +6,11 @@ export const DONT_CLICK_URL = 'https://findtheinvisiblecow.com/';
 export const modalStyle = {
   position: 'absolute',
   top: '50%',
+  maxHeight: '80%',
+  overflow: 'scroll',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 400,
+  width: '85%',
   bgcolor: 'background.paper',
   border: '2px solid #000',
   boxShadow: 24,

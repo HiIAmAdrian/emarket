@@ -15,6 +15,11 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import { ExpandMoreProps, ShopItem } from '../../../types';
+import { useSelector, useDispatch } from 'react-redux';
+import { getUserAuthState } from '../../../redux/store';
+import { LOGGED_IN } from '../../../constants';
+import { addToShopCart } from '../../../redux/reducerAuth';
+import { useNavigate } from 'react-router-dom';
 
 const ExpandMore = styled((props: ExpandMoreProps) => {
   // eslint-disable-next-line no-unused-vars
@@ -32,6 +37,9 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 export default function ItemCard(props: ShopItem) {
   const { title, price, description, category, image, rating } = props;
   const [expanded, setExpanded] = React.useState(false);
+  const isLoggedIn = useSelector(getUserAuthState);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -76,7 +84,14 @@ export default function ItemCard(props: ShopItem) {
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton aria-label="share">
+        <IconButton
+          onClick={
+            isLoggedIn === LOGGED_IN
+              ? () => dispatch(addToShopCart(props))
+              : () => navigate('/login')
+          }
+          aria-label="share"
+        >
           <AddShoppingCartIcon />
         </IconButton>
         <IconButton aria-label="add to favorites">

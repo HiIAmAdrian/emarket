@@ -1,0 +1,14 @@
+1. Add admin and its functionality
+1a. UserToken needs to be stored locally
+1b. When item added more than once to cart, set quantity++
+2. Add remember me functionality
+3. Forgot password
+4. Make links in menu to not show if already clicked
+5. Add mini alerts for when: -not logged user clicks add to cart and shopping cart
+                             -logged user adds to cart
+                             -logged user adds to favorite
+6. make home page products or login
+7. make product list act like Masonry when details of a product are shown
+8. favorite list
+9. when clicked on shop logo redirect to products
+10. see emag for further inspiration

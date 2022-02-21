@@ -16,6 +16,7 @@ export interface ShopItem {
     rate: number;
     count: number;
   };
+  quantity: number;
 }
 
 export interface AuthSliceState {
@@ -24,13 +25,22 @@ export interface AuthSliceState {
   shopCartList: ShopItem[];
 }
 
+export interface SetQuantity {
+  id: number;
+  quantity: number;
+}
+
 export interface LogInAction {
   token: string;
 }
 
-export interface AddToShopCartAction {
-  item: ShopItem;
-}
+// export interface DeleteAction {
+//   id: number;
+// }
+
+// export interface AddToShopCartAction {
+//   item: ShopItem;
+// }
 
 export interface ShopSliceState {
   shopList: ShopItem[];
