@@ -15,6 +15,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { login } from '../../redux/reducerAuth';
+import { Link as RouterLink } from 'react-router-dom';
 
 function Copyright() {
   return (
@@ -118,7 +119,7 @@ export default function LogIn() {
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link to="/signup" component={RouterLink} variant="body2">
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
