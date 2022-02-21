@@ -4,13 +4,16 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../redux/reducerAuth';
+import { getUserAuthState } from '../../redux/store';
+import { LOGGED_IN } from '../../constants';
 
 export default function BasicMenu() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const dispatch = useDispatch();
+  const isLoggedIn = useSelector(getUserAuthState);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
@@ -18,6 +21,33 @@ export default function BasicMenu() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  let conditionalMenu: JSX.Element;
+
+  if (isLoggedIn === LOGGED_IN) {
+    conditionalMenu = (
+      <MenuItem
+        onClick={() => {
+          dispatch(logout);
+          console.log('da ba');
+          setAnchorEl(null);
+        }}
+      >
+        Logout
+      </MenuItem>
+    );
+  } else {
+    conditionalMenu = (
+      <React.Fragment>
+        <MenuItem onClick={handleClose}>
+          <Link to="/login">Log In</Link>
+        </MenuItem>
+        <MenuItem onClick={handleClose}>
+          <Link to="/signup">Sign Up</Link>
+        </MenuItem>
+      </React.Fragment>
+    );
+  }
 
   return (
     <div>
@@ -39,15 +69,10 @@ export default function BasicMenu() {
           'aria-labelledby': 'basic-button',
         }}
       >
-        <MenuItem onClick={handleClose}><Link to="/products">Products</Link></MenuItem>
-              <MenuItem onClick={handleClose}><Link to="/login">Log In</Link></MenuItem>
-              <MenuItem onClick={handleClose}><Link to="/signup">Sign Up</Link></MenuItem>
-              <MenuItem onClick={() => {
-                dispatch(logout);
-                console.log("da ba");
-                setAnchorEl(null);
-              }}
-        >Logout</MenuItem>
+        <MenuItem onClick={handleClose}>
+          <Link to="/products">Products</Link>
+        </MenuItem>
+        {conditionalMenu}
       </Menu>
     </div>
   );

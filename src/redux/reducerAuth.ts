@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { LOGGED_IN, LOGGED_OUT } from '../constants';
 
 interface ShopItem {
   id: number;
@@ -14,7 +15,7 @@ interface ShopItem {
 }
 
 interface AuthSliceState {
-  isLoggedIn: boolean;
+  loginState: boolean;
   userToken: string;
   shopCartList: ShopItem[];
 }
@@ -30,17 +31,16 @@ interface AddToShopCartAction {
 const authSlice = createSlice({
   name: 'auth',
   initialState: {
-    isLoggedIn: false,
+    loginState: LOGGED_OUT,
     userToken: '',
     shopCartList: [],
   } as AuthSliceState,
   reducers: {
     logout(state) {
-      state.isLoggedIn = false;
-      console.log('dcccc');
+      state.loginState = LOGGED_OUT;
     },
     login(state, action: PayloadAction<LogInAction>) {
-      state.isLoggedIn = true;
+      state.loginState = LOGGED_IN;
       state.userToken = action.payload.token;
     },
     addToShopCart(state, action: PayloadAction<AddToShopCartAction>) {

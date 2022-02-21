@@ -15,7 +15,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { login } from '../../redux/reducerAuth';
-import { Link as RouterLink } from 'react-router-dom';
+import { useNavigate, Link as RouterLink } from 'react-router-dom';
 
 function Copyright() {
   return (
@@ -39,6 +39,7 @@ const theme = createTheme();
 
 export default function LogIn() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -52,6 +53,7 @@ export default function LogIn() {
       .then((res) => {
         console.log(res.data);
         dispatch(login(res.data));
+        navigate('/products');
       })
       .catch((err) => console.log(err));
   }
