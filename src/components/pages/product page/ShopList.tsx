@@ -1,9 +1,9 @@
 import React from 'react';
-import { getShopList } from '../../redux/store';
+import { getShopList } from '../../../redux/store';
 import { useSelector } from 'react-redux';
 import ItemCard from './ItemCard';
 import { Grid } from '@mui/material';
-import { ShopItem } from '../../types';
+import { ShopItem } from '../../../types';
 
 function ShopList() {
   const list = useSelector(getShopList);

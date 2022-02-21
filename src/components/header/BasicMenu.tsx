@@ -26,8 +26,7 @@ export default function BasicMenu() {
     conditionalMenu = (
       <MenuItem
         onClick={() => {
-          dispatch(logout);
-          console.log('da ba');
+          dispatch(logout());
           setAnchorEl(null);
         }}
       >

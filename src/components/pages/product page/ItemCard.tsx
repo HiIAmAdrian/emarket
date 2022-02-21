@@ -14,7 +14,7 @@ import {
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
-import { ExpandMoreProps, ShopItem } from '../../types';
+import { ExpandMoreProps, ShopItem } from '../../../types';
 
 const ExpandMore = styled((props: ExpandMoreProps) => {
   // eslint-disable-next-line no-unused-vars
