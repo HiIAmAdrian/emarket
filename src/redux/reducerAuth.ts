@@ -1,32 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { LOGGED_IN, LOGGED_OUT } from '../constants';
-
-interface ShopItem {
-  id: number;
-  title: string;
-  price: number;
-  description: string;
-  category: string;
-  image: string;
-  rating: {
-    rate: number;
-    count: number;
-  };
-}
-
-interface AuthSliceState {
-  loginState: boolean;
-  userToken: string;
-  shopCartList: ShopItem[];
-}
-
-interface LogInAction {
-  token: string;
-}
-
-interface AddToShopCartAction {
-  item: ShopItem;
-}
+import { AuthSliceState, LogInAction, AddToShopCartAction } from '../types';
 
 const authSlice = createSlice({
   name: 'auth',

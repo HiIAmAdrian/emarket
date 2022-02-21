@@ -1,21 +1,9 @@
+import React from 'react';
 import { getShopList } from '../../redux/store';
 import { useSelector } from 'react-redux';
 import ItemCard from './ItemCard';
 import { Grid } from '@mui/material';
-import React from 'react';
-
-interface ShopItem {
-  id: number;
-  title: string;
-  price: number;
-  description: string;
-  category: string;
-  image: string;
-  rating: {
-    rate: number;
-    count: number;
-  };
-}
+import { ShopItem } from '../../types';
 
 function ShopList() {
   const list = useSelector(getShopList);

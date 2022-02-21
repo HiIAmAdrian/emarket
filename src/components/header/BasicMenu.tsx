@@ -38,14 +38,14 @@ export default function BasicMenu() {
     );
   } else {
     conditionalMenu = (
-      <React.Fragment>
+      <div>
         <MenuItem onClick={handleClose}>
           <Link to="/login">Log In</Link>
         </MenuItem>
         <MenuItem onClick={handleClose}>
           <Link to="/signup">Sign Up</Link>
         </MenuItem>
-      </React.Fragment>
+      </div>
     );
   }
 

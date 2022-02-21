@@ -4,18 +4,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-
-const style = {
-  position: 'absolute' as const,
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
-  boxShadow: 24,
-  p: 4,
-};
+import { modalStyle } from '../../constants';
 
 export default function ShoppingCart() {
   const [open, setOpen] = React.useState(false);
@@ -23,7 +12,7 @@ export default function ShoppingCart() {
   const handleClose = () => setOpen(false);
 
   return (
-    <div>
+    <React.Fragment>
       <Button onClick={handleOpen}>
         <ShoppingCartIcon color="secondary"></ShoppingCartIcon>
       </Button>
@@ -33,7 +22,7 @@ export default function ShoppingCart() {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
+        <Box sx={modalStyle}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
             Text in a modal
           </Typography>
@@ -42,6 +31,6 @@ export default function ShoppingCart() {
           </Typography>
         </Box>
       </Modal>
-    </div>
+    </React.Fragment>
   );
 }

@@ -13,7 +13,6 @@ function App() {
 
   useEffect(() => {
     dispatch(getItems());
-    console.log('da');
   }, [dispatch]);
 
   return (

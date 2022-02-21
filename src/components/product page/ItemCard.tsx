@@ -7,7 +7,6 @@ import {
   CardHeader,
   Card,
   Collapse,
-  IconButtonProps,
   IconButton,
   Typography,
   Rating,
@@ -15,23 +14,7 @@ import {
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
-
-interface ExpandMoreProps extends IconButtonProps {
-  expand: boolean;
-}
-
-interface ShopItem {
-  id: number;
-  title: string;
-  price: number;
-  description: string;
-  category: string;
-  image: string;
-  rating: {
-    rate: number;
-    count: number;
-  };
-}
+import { ExpandMoreProps, ShopItem } from '../../types';
 
 const ExpandMore = styled((props: ExpandMoreProps) => {
   // eslint-disable-next-line no-unused-vars
@@ -83,7 +66,6 @@ export default function ItemCard(props: ShopItem) {
         precision={0.25}
         readOnly
       />
-
       <CardContent>
         <Typography align="center" variant="h4" color="red">
           {Math.floor(price)}

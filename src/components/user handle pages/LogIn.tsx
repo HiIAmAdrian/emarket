@@ -16,6 +16,7 @@ import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { login } from '../../redux/reducerAuth';
 import { useNavigate, Link as RouterLink } from 'react-router-dom';
+import { DONT_CLICK_URL } from '../../constants';
 
 function Copyright() {
   return (
@@ -26,7 +27,7 @@ function Copyright() {
       sx={{ mt: 8, mb: 4 }}
     >
       {'Copyright © '}
-      <Link color="inherit" href="https://findtheinvisiblecow.com/">
+      <Link color="inherit" href={DONT_CLICK_URL}>
         DO NOT CLICK HERE
       </Link>{' '}
       {new Date().getFullYear()}
