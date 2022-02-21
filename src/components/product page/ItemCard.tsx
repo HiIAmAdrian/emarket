@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { styled } from '@mui/material/styles';
 import {
   CardActions,
   CardContent,
@@ -10,6 +9,7 @@ import {
   IconButton,
   Typography,
   Rating,
+  styled,
 } from '@mui/material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
