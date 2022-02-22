@@ -17,10 +17,10 @@ import {
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
-import { login } from '../../../redux/reducerAuth';
+import { login } from '../store/reducerAuth';
 import { useNavigate, Link as RouterLink } from 'react-router-dom';
-import { DONT_CLICK_URL, ADMIN_NAME } from '../../../constants';
-import Header from '../../header/Header';
+import { DONT_CLICK_URL, ADMIN_NAME } from '../constants';
+import Header from './Header';
 
 function Copyright() {
   return (
@@ -49,7 +49,8 @@ export default function LogIn() {
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-
+    //api req in one file
+    //
     axios
       .post('https://fakestoreapi.com/auth/login', {
         username: data.get('username'),

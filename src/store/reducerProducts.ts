@@ -17,6 +17,7 @@ const shopSlice = createSlice({
   name: 'shopList',
   initialState: { shopList: [], isLoading: NOT_LOADING } as ShopSliceState,
   reducers: {},
+  //builder callback
   extraReducers: {
     [getItems.pending as unknown as string]: (state) => {
       state.isLoading = LOADING;

@@ -14,11 +14,11 @@ import {
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
-import { ExpandMoreProps, ItemCardProps, ShopItem } from '../../../types';
+import { ExpandMoreProps, ItemCardProps, ShopItem } from '../types';
 import { useSelector, useDispatch } from 'react-redux';
-import { getUserAuthState } from '../../../redux/store';
-import { LOGGED_IN } from '../../../constants';
-import { addToShopCart } from '../../../redux/reducerAuth';
+import { getUserAuthState } from '../store/store';
+import { LOGGED_IN } from '../constants';
+import { addToShopCart } from '../store/reducerAuth';
 import { useNavigate } from 'react-router-dom';
 
 const ExpandMore = styled((props: ExpandMoreProps) => {

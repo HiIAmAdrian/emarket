@@ -1,18 +1,19 @@
 import React, { useEffect } from 'react';
 import { CssBaseline } from '@mui/material';
-import ShopList from './components/pages/product page/ShopList';
-import LogIn from './components/pages/user handle pages/LogIn';
-import SignUp from './components/pages/user handle pages/SignUp';
+import Products from './pages/Products';
+import LogIn from './pages/LogIn';
+import SignUp from './pages/SignUp';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getItems } from './redux/reducerProducts';
-import Dashboard from './components/pages/admin page/Dashboard';
-import { getUserAuthState, getUserRole } from './redux/store';
+import { getItems } from './store/reducerProducts';
+import { getUserAuthState, getUserRole } from './store/store';
 import { ADMIN, LOGGED_IN } from './constants';
-import { login } from './redux/reducerAuth';
+import { login } from './store/reducerAuth';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert, { AlertProps } from '@mui/material/Alert';
 import { useUpdateEffect } from 'react-use';
+import Checkout from './pages/Checkout';
+import AdminPage from './pages/admin page/AdminPage';
 
 const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
   props,
@@ -42,14 +43,16 @@ function App() {
     setOpen(true);
   }, [authState]);
 
-  /*useEffect(() => {
+  useEffect(() => {
     dispatch(getItems());
-  }, [dispatch, localStorage.getItem('numberOfItems')]);*/
+  }, []);
 
+  //initial state la reducer
   useEffect(() => {
     if (localStorage.getItem('userToken'))
       dispatch(
         login({
+          //specific func
           token: JSON.parse(localStorage.getItem('userToken') as string),
         })
       );
@@ -61,15 +64,16 @@ function App() {
         <CssBaseline enableColorScheme />
         <Routes>
           <Route path="/" element={<Navigate to="/products" />} />
-          <Route path="/products" element={<ShopList />} />
+          <Route path="/products" element={<Products />} />
           <Route path="/login" element={<LogIn />} />
           <Route path="/signup" element={<SignUp />} />
           <Route
-            path="/dashboard/*"
+            path="/admin/*"
             element={
-              userRole === ADMIN ? <Dashboard /> : <Navigate to="/products" />
+              userRole === ADMIN ? <AdminPage /> : <Navigate to="/products" />
             }
           />
+          <Route path="/checkout" element={<Checkout />} />
         </Routes>
       </BrowserRouter>
       <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>

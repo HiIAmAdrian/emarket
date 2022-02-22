@@ -3,11 +3,11 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { useNavigate, Link as RouterLink } from 'react-router-dom';
 import { Link } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
-import { logout } from '../../redux/reducerAuth';
-import { getUserAuthState, getUserRole } from '../../redux/store';
-import { ADMIN, LOGGED_IN, USER } from '../../constants';
+import { logout } from '../store/reducerAuth';
+import { getUserAuthState, getUserRole } from '../store/store';
+import { ADMIN, LOGGED_IN, USER } from '../constants';
 import { Button, Menu, MenuItem } from '@mui/material';
-import theme from '../../theme';
+import theme from '../theme';
 
 export default function BasicMenu() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -32,7 +32,7 @@ export default function BasicMenu() {
         <Link
           sx={{ textDecoration: 'none' }}
           component={RouterLink}
-          to="/dashboard"
+          to="/admin"
         >
           Dashboard
         </Link>

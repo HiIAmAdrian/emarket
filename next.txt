@@ -10,5 +10,3 @@
 10. make my own backend api
 11. get the shop cart to checkout and checked out items to admin orders dashboard
 *. see emag for further inspiration
-
-12. notification bubble for shopcart

@@ -1,16 +1,15 @@
 import React from 'react';
-import { getShopList } from '../../../redux/store';
+import { getShopList } from '../store/store';
 import { useSelector } from 'react-redux';
-import ItemCard from './ItemCard';
+import ItemCard from '../components/ItemCard';
 import { Alert, Grid } from '@mui/material';
-import { ShopItem } from '../../../types';
-import Header from '../../header/Header';
-import Button from '@mui/material/Button';
+import { ShopItem } from '../types';
+import Header from './Header';
 import Snackbar from '@mui/material/Snackbar';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 
-function ShopList() {
+function Products() {
   const list = useSelector(getShopList);
   const [open, setOpen] = React.useState(false);
 
@@ -85,4 +84,4 @@ function ShopList() {
   );
 }
 
-export default ShopList;
+export default Products;

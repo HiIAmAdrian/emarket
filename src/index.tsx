@@ -5,8 +5,7 @@ import App from './App';
 import theme from './theme';
 import { ThemeProvider } from '@mui/material/styles';
 import { Provider } from 'react-redux';
-import store from './redux/store';
-
+import store from './store/store';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -18,4 +17,3 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root')
 );
-

@@ -1,5 +1,5 @@
 import { IconButtonProps } from '@mui/material';
-import store from './redux/store';
+import store from './store/store';
 
 export interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
@@ -34,28 +34,19 @@ export interface LogInAction {
   token: string;
 }
 
-export interface ItemCardProps {
-  id: number;
-  title: string;
-  price: number;
-  description: string;
-  category: string;
-  image: string;
-  rating: {
-    rate: number;
-    count: number;
-  };
-  quantity: number;
+export interface ItemCardProps extends ShopItem {
   handleClick: () => void;
 }
 
-// export interface DeleteAction {
-//   id: number;
-// }
-
-// export interface AddToShopCartAction {
-//   item: ShopItem;
-// }
+export interface CheckoutSliceState {
+  address: string[];
+  paymentDetails: {
+    cardType: string;
+    cardHolder: string;
+    cardNumber: string;
+    expiryDate: string;
+  };
+}
 
 export interface ShopSliceState {
   shopList: ShopItem[];

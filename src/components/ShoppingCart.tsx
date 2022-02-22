@@ -9,25 +9,26 @@ import {
   Badge,
 } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import { modalStyle } from '../../constants';
+import { modalStyle } from '../constants';
 import ItemShopCart from './ItemShopCart';
 import { useSelector } from 'react-redux';
-import { getShopCartList, getShopCartTotalItems } from '../../redux/store';
-import { ShopItem } from '../../types';
+import {
+  getShopCartList,
+  getShopCartTotalItems,
+  getShopCartTotalPrice,
+} from '../store/store';
+import { ShopItem } from '../types';
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
-import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
+import { useNavigate } from 'react-router-dom';
 
 export default function ShoppingCart() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const shopCartList = useSelector(getShopCartList);
+  const totalPrice = useSelector(getShopCartTotalPrice);
   const totalNbOfItems = useSelector(getShopCartTotalItems);
-
-  let totalPrice = 0;
-  for (let i = 0; i < shopCartList.length; i++) {
-    totalPrice += shopCartList[i].price * shopCartList[i].quantity;
-  }
+  const navigate = useNavigate();
 
   function createShopCartGridElement(shopCartObj: ShopItem) {
     return (
@@ -38,16 +39,12 @@ export default function ShoppingCart() {
   }
 
   let buyButton: JSX.Element = <div></div>;
-  let title = (
-    <div>
-      Shopping Cart Empty <SentimentVeryDissatisfiedIcon />
-    </div>
-  );
+  let title = 'Shopping Cart Empty!';
 
   let totalPriceText = '';
 
   if (shopCartList.length) {
-    title = <div>Shopping Cart:</div>;
+    title = 'Shopping Cart: ';
     totalPriceText = 'TOTAL: ' + totalPrice.toFixed(2) + ' lei';
     buyButton = (
       <IconButton
@@ -58,6 +55,7 @@ export default function ShoppingCart() {
           marginRight: '30px',
           marginTop: '20px',
         }}
+        onClick={() => navigate('/checkout')}
       >
         <ShoppingBagIcon />
         {'BUY'}
@@ -98,7 +96,7 @@ export default function ShoppingCart() {
           >
             {totalPriceText}
           </Typography>
-          <Typography>{buyButton}</Typography>
+          {buyButton}
         </Box>
       </Modal>
     </React.Fragment>

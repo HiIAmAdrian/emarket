@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 import { Typography } from '@mui/material';
 import { useDispatch } from 'react-redux';
-import { getItems } from '../../../redux/reducerProducts';
+import { getItems } from '../../store/reducerProducts';
 
 export default function SliderItems() {
   const dispatch = useDispatch();

@@ -16,10 +16,20 @@ export const getUserAuthState = (state: RootState) => state.auth.loginState;
 export const getUserRole = (state: RootState) => state.auth.userRole;
 export const getShopCartTotalItems = (state: RootState) => {
   let sum = 0;
-  state.auth.shopCartList.forEach((item) => {
+  state.auth.shopCartList.forEach((item: { quantity: number }) => {
     sum += item.quantity;
   });
 
   return sum;
 };
+export const getShopCartTotalPrice = (state: RootState) => {
+  let totalPrice = 0;
+  for (let i = 0; i < state.auth.shopCartList.length; i++) {
+    totalPrice +=
+      state.auth.shopCartList[i].price * state.auth.shopCartList[i].quantity;
+  }
+
+  return totalPrice;
+};
+
 export default store;

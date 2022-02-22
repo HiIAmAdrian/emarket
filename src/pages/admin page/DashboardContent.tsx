@@ -1,10 +1,10 @@
 import { Grid, Paper } from '@mui/material';
-import Chart from './Chart';
-import Deposits from './Deposits';
-import Orders from './Orders';
+import Chart from '../../components/Chart';
+import Deposits from '../../components/Deposits';
+import Orders from '../../components/Orders';
 import React from 'react';
 
-function DashboardMain() {
+function DashboardContent() {
   return (
     <Grid container spacing={3}>
       {/* Chart */}
@@ -43,4 +43,4 @@ function DashboardMain() {
   );
 }
 
-export default DashboardMain;
+export default DashboardContent;

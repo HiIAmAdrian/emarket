@@ -8,15 +8,15 @@ import {
   Typography,
   TextField,
 } from '@mui/material';
-import { ShopItem } from '../../types';
+import { ShopItem } from '../types';
 import { useState } from 'react';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useDispatch } from 'react-redux';
-import { SetQuantity } from '../../types';
+import { SetQuantity } from '../types';
 import {
   deleteFromShoppingCart,
   setQuantityOfProduct,
-} from '../../redux/reducerAuth';
+} from '../store/reducerAuth';
 
 export default function ItemShopCart(props: ShopItem) {
   const { id, title, price, image, quantity } = props;
