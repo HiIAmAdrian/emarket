@@ -4,7 +4,11 @@ import { BACKEND_URL, LOADING, NOT_LOADING } from '../constants';
 import { ShopSliceState } from '../types';
 
 export const getItems = createAsyncThunk('products/getItems', async () => {
-  const { data } = await axios.get(`${BACKEND_URL}/products`);
+  let limit = 20;
+  if (localStorage.getItem('numberOfItems'))
+    limit = JSON.parse(localStorage.getItem('numberOfItems') as string);
+
+  const { data } = await axios.get(`${BACKEND_URL}/products?limit=${limit}`);
 
   return data;
 });

@@ -1,5 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { LOGGED_IN, LOGGED_OUT, USER, ADMIN, ADMIN_NAME, NONE } from '../constants';
+import {
+  LOGGED_IN,
+  LOGGED_OUT,
+  USER,
+  ADMIN,
+  ADMIN_NAME,
+  NONE,
+} from '../constants';
 import { AuthSliceState, LogInAction, SetQuantity, ShopItem } from '../types';
 
 const authSlice = createSlice({
@@ -13,7 +20,8 @@ const authSlice = createSlice({
     logout(state) {
       state.loginState = LOGGED_OUT;
       state.shopCartList = [];
-      localStorage.clear();
+      localStorage.removeItem('userName');
+      localStorage.removeItem('userToken');
     },
     login(state, action: PayloadAction<LogInAction>) {
       state.loginState = LOGGED_IN;

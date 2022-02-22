@@ -16,7 +16,7 @@ function App() {
 
   useEffect(() => {
     dispatch(getItems());
-  }, [dispatch]);
+  }, [dispatch, localStorage.getItem('numberOfItems')]);
 
   return (
     <BrowserRouter>
@@ -27,7 +27,7 @@ function App() {
         <Route path="/login" element={<LogIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route
-          path="/dashboard"
+          path="/dashboard/*"
           element={
             userRole === ADMIN ? <Dashboard /> : <Navigate to="/products" />
           }

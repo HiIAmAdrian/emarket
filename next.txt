@@ -13,4 +13,5 @@
 9. when clicked on shop logo redirect to products
 10. make my own backend api
 11. get the shop cart to checkout and checked out items to admin orders dashboard
+12. fix refresh of page when enter url manually
 *. see emag for further inspiration
