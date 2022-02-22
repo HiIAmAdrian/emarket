@@ -21,6 +21,7 @@ import { mainListItems, secondaryListItems } from './ListItems';
 import Chart from './Chart';
 import Deposits from './Deposits';
 import Orders from './Orders';
+import BasicMenu from '../../header/BasicMenu';
 
 function Copyright(props: any) {
   return (
@@ -130,9 +131,7 @@ function DashboardContent() {
               Dashboard
             </Typography>
             <IconButton color="inherit">
-              <Badge badgeContent={4} color="secondary">
-                <NotificationsIcon />
-              </Badge>
+              <BasicMenu />
             </IconButton>
           </Toolbar>
         </AppBar>

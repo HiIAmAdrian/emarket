@@ -1,23 +1,27 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { LOGGED_IN, LOGGED_OUT } from '../constants';
+import { LOGGED_IN, LOGGED_OUT, USER, ADMIN, ADMIN_NAME } from '../constants';
 import { AuthSliceState, LogInAction, SetQuantity, ShopItem } from '../types';
 
 const authSlice = createSlice({
   name: 'auth',
   initialState: {
     loginState: LOGGED_OUT,
-    userToken: '',
+    userRole: USER,
     shopCartList: [],
   } as AuthSliceState,
   reducers: {
     logout(state) {
       state.loginState = LOGGED_OUT;
       state.shopCartList = [];
-      state.userToken = '';
+      localStorage.clear();
     },
     login(state, action: PayloadAction<LogInAction>) {
       state.loginState = LOGGED_IN;
-      state.userToken = action.payload.token;
+      localStorage.setItem('userToken', JSON.stringify(action.payload.token));
+      state.userRole =
+        JSON.parse(localStorage.getItem('userName') as string) === ADMIN_NAME
+          ? ADMIN
+          : USER;
     },
     addToShopCart(state, action: PayloadAction<ShopItem>) {
       const newItem = { ...action.payload, quantity: 1 };

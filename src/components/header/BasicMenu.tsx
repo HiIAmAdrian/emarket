@@ -1,10 +1,10 @@
 import * as React from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../redux/reducerAuth';
-import { getUserAuthState } from '../../redux/store';
-import { LOGGED_IN } from '../../constants';
+import { getUserAuthState, getUserRole } from '../../redux/store';
+import { ADMIN, LOGGED_IN, USER } from '../../constants';
 import { Button, Menu, MenuItem } from '@mui/material';
 
 export default function BasicMenu() {
@@ -12,6 +12,8 @@ export default function BasicMenu() {
   const open = Boolean(anchorEl);
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(getUserAuthState);
+  const navigate = useNavigate();
+  const userRole = useSelector(getUserRole);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
@@ -22,11 +24,29 @@ export default function BasicMenu() {
 
   let conditionalMenu: JSX.Element;
 
-  if (isLoggedIn === LOGGED_IN) {
+  if (isLoggedIn === LOGGED_IN && userRole === ADMIN) {
+    conditionalMenu = (
+      <React.Fragment>
+        <MenuItem onClick={handleClose}>
+          <Link to="/dashboard">Dashboard</Link>
+        </MenuItem>
+        <MenuItem
+          onClick={() => {
+            dispatch(logout());
+            navigate('/products');
+            setAnchorEl(null);
+          }}
+        >
+          Logout
+        </MenuItem>
+      </React.Fragment>
+    );
+  } else if (isLoggedIn === LOGGED_IN && userRole === USER) {
     conditionalMenu = (
       <MenuItem
         onClick={() => {
           dispatch(logout());
+          navigate('/products');
           setAnchorEl(null);
         }}
       >

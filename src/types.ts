@@ -21,7 +21,7 @@ export interface ShopItem {
 
 export interface AuthSliceState {
   loginState: boolean;
-  userToken: string;
+  userRole: string;
   shopCartList: ShopItem[];
 }
 

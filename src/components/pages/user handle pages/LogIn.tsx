@@ -16,11 +16,10 @@ import {
 } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import axios from 'axios';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { login } from '../../../redux/reducerAuth';
 import { useNavigate, Link as RouterLink } from 'react-router-dom';
-import { DONT_CLICK_URL, ADMIN_TOKEN } from '../../../constants';
-import { getUserToken } from '../../../redux/store';
+import { DONT_CLICK_URL, ADMIN_NAME } from '../../../constants';
 import Header from '../../header/Header';
 
 function Copyright() {
@@ -58,8 +57,8 @@ export default function LogIn() {
       })
       .then((res) => {
         dispatch(login(res.data));
-        console.log(res.data.token);
-        if (res.data.token === ADMIN_TOKEN) {
+        localStorage.setItem('userName', JSON.stringify(data.get('username')));
+        if (data.get('username') === ADMIN_NAME) {
           navigate('/dashboard');
         } else {
           navigate('/products');

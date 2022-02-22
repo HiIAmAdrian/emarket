@@ -20,4 +20,7 @@ export const modalStyle = {
 export const LOADING = true;
 export const NOT_LOADING = false;
 
-export const ADMIN_TOKEN = 'eyJr389hbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9';
+export const ADMIN_NAME = 'mor_2314';
+
+export const USER = 'user';
+export const ADMIN = 'admin';
