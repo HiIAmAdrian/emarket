@@ -46,7 +46,6 @@ const theme = createTheme();
 export default function LogIn() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const userToken = useSelector(getUserToken);
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -59,7 +58,8 @@ export default function LogIn() {
       })
       .then((res) => {
         dispatch(login(res.data));
-        if (userToken === ADMIN_TOKEN) {
+        console.log(res.data.token);
+        if (res.data.token === ADMIN_TOKEN) {
           navigate('/dashboard');
         } else {
           navigate('/products');
