@@ -24,3 +24,4 @@ export const ADMIN_NAME = 'mor_2314';
 
 export const USER = 'user';
 export const ADMIN = 'admin';
+export const NONE = '';

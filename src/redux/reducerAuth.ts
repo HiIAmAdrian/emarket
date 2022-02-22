@@ -1,12 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { LOGGED_IN, LOGGED_OUT, USER, ADMIN, ADMIN_NAME } from '../constants';
+import { LOGGED_IN, LOGGED_OUT, USER, ADMIN, ADMIN_NAME, NONE } from '../constants';
 import { AuthSliceState, LogInAction, SetQuantity, ShopItem } from '../types';
 
 const authSlice = createSlice({
   name: 'auth',
   initialState: {
     loginState: LOGGED_OUT,
-    userRole: USER,
+    userRole: NONE,
     shopCartList: [],
   } as AuthSliceState,
   reducers: {
