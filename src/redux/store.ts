@@ -13,5 +13,6 @@ const store = configureStore({
 export const getShopList = (state: RootState) => state.shopList.shopList;
 export const getShopCartList = (state: RootState) => state.auth.shopCartList;
 export const getUserAuthState = (state: RootState) => state.auth.loginState;
+export const getUserToken = (state: RootState) => state.auth.userToken;
 
 export default store;

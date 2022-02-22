@@ -11,4 +11,6 @@
 7. make product list act like Masonry when details of a product are shown
 8. favorite list
 9. when clicked on shop logo redirect to products
-10. see emag for further inspiration
+10. make my own backend api
+11. get the shop cart to checkout and checked out items to admin orders dashboard
+*. see emag for further inspiration
