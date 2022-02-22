@@ -19,7 +19,7 @@ import {
 } from '../../redux/reducerAuth';
 
 export default function ItemShopCart(props: ShopItem) {
-  const { id, title, price, image } = props;
+  const { id, title, price, image, quantity } = props;
   const [totalPrice, setTotalPrice] = useState(price);
   const dispatch = useDispatch();
 
@@ -69,7 +69,7 @@ export default function ItemShopCart(props: ShopItem) {
             setTotalPrice(price * +e.currentTarget.value);
           }}
           sx={{ width: 71, justifySelf: 'end' }}
-          defaultValue={1}
+          defaultValue={quantity}
           InputLabelProps={{
             shrink: true,
           }}

@@ -33,7 +33,18 @@ const authSlice = createSlice({
     },
     addToShopCart(state, action: PayloadAction<ShopItem>) {
       const newItem = { ...action.payload, quantity: 1 };
-      state.shopCartList.push(newItem);
+      if (state.shopCartList.find((item) => item.id === action.payload.id)) {
+        state.shopCartList = state.shopCartList.map((item) =>
+          item.id !== action.payload.id
+            ? item
+            : {
+                ...item,
+                quantity: item.quantity + 1,
+              }
+        );
+      } else {
+        state.shopCartList.push(newItem);
+      }
     },
     deleteFromShoppingCart(state, action: PayloadAction<number>) {
       state.shopCartList = state.shopCartList.filter(

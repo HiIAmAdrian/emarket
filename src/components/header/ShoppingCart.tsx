@@ -46,7 +46,7 @@ export default function ShoppingCart() {
 
   if (shopCartList.length) {
     title = <p>Shopping Cart:</p>;
-    totalPriceText = 'TOTAL PRICE: ' + totalPrice.toFixed(2) + ' lei';
+    totalPriceText = 'TOTAL: ' + totalPrice.toFixed(2) + ' lei';
     buyButton = (
       <IconButton
         sx={{

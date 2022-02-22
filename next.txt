@@ -1,5 +1,4 @@
 1. Add admin and its functionality
-1a. UserToken needs to be stored locally
 1b. When item added more than once to cart, set quantity++
 2. Add remember me functionality
 3. Forgot password
@@ -7,11 +6,9 @@
 5. Add mini alerts for when: -not logged user clicks add to cart and shopping cart
                              -logged user adds to cart
                              -logged user adds to favorite
-6. make home page products or login
 7. make product list act like Masonry when details of a product are shown
 8. favorite list
 9. when clicked on shop logo redirect to products
 10. make my own backend api
 11. get the shop cart to checkout and checked out items to admin orders dashboard
-12. fix refresh of page when enter url manually
 *. see emag for further inspiration

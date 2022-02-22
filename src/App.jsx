@@ -20,7 +20,8 @@ function App() {
   }, [dispatch, localStorage.getItem('numberOfItems')]);
 
   useEffect(() => {
-    dispatch(login({ token: JSON.parse(localStorage.getItem('userToken')) }));
+    if (localStorage.getItem('userToken'))
+      dispatch(login({ token: JSON.parse(localStorage.getItem('userToken')) }));
   }, []);
 
   return (
