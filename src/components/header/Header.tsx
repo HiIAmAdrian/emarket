@@ -13,6 +13,7 @@ function Header() {
           justifyContent: 'space-between',
           alignItems: 'center',
           flexDirection: 'row',
+          height: '60px',
         }}
         position="fixed"
       >

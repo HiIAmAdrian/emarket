@@ -9,11 +9,12 @@ import PeopleIcon from '@mui/icons-material/People';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import LayersIcon from '@mui/icons-material/Layers';
 import AssignmentIcon from '@mui/icons-material/Assignment';
-import { Link } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
+import { Link } from '@mui/material';
 
 export const mainListItems = (
   <React.Fragment>
-    <Link to="">
+    <Link sx={{ textDecoration: 'none' }} component={RouterLink} to="">
       <ListItemButton>
         <ListItemIcon>
           <DashboardIcon />
@@ -33,7 +34,7 @@ export const mainListItems = (
       </ListItemIcon>
       <ListItemText primary="Customers" />
     </ListItemButton>
-    <Link to="slider">
+    <Link sx={{ textDecoration: 'none' }} component={RouterLink} to="slider">
       <ListItemButton>
         <ListItemIcon>
           <BarChartIcon />

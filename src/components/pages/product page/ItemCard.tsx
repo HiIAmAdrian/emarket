@@ -14,7 +14,7 @@ import {
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
-import { ExpandMoreProps, ShopItem } from '../../../types';
+import { ExpandMoreProps, ItemCardProps, ShopItem } from '../../../types';
 import { useSelector, useDispatch } from 'react-redux';
 import { getUserAuthState } from '../../../redux/store';
 import { LOGGED_IN } from '../../../constants';
@@ -34,8 +34,9 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
   }),
 }));
 
-export default function ItemCard(props: ShopItem) {
-  const { title, price, description, category, image, rating } = props;
+export default function ItemCard(props: ItemCardProps) {
+  const { title, price, description, category, image, rating, handleClick } =
+    props;
   const [expanded, setExpanded] = React.useState(false);
   const isLoggedIn = useSelector(getUserAuthState);
   const navigate = useNavigate();
@@ -87,7 +88,15 @@ export default function ItemCard(props: ShopItem) {
         <IconButton
           onClick={
             isLoggedIn === LOGGED_IN
-              ? () => dispatch(addToShopCart(props))
+              ? () => {
+                  const shopItem: Partial<ItemCardProps> = Object.assign(
+                    {},
+                    { ...props }
+                  );
+                  delete shopItem.handleClick;
+                  dispatch(addToShopCart(shopItem as ShopItem));
+                  handleClick();
+                }
               : () => navigate('/login')
           }
           aria-label="share"

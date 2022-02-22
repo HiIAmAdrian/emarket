@@ -59,7 +59,6 @@ export default function LogIn() {
         localStorage.setItem('userName', JSON.stringify(data.get('username')));
         dispatch(login(res.data));
         if (data.get('username') === ADMIN_NAME) {
-          console.log('da');
           navigate('/dashboard');
         } else {
           navigate('/products');

@@ -1,11 +1,13 @@
 import * as React from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate, Link as RouterLink } from 'react-router-dom';
+import { Link } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../redux/reducerAuth';
 import { getUserAuthState, getUserRole } from '../../redux/store';
 import { ADMIN, LOGGED_IN, USER } from '../../constants';
 import { Button, Menu, MenuItem } from '@mui/material';
+import theme from '../../theme';
 
 export default function BasicMenu() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -22,47 +24,69 @@ export default function BasicMenu() {
     setAnchorEl(null);
   };
 
-  let conditionalMenu: JSX.Element;
+  const conditionalMenu: JSX.Element[] = [];
 
   if (isLoggedIn === LOGGED_IN && userRole === ADMIN) {
-    conditionalMenu = (
-      <React.Fragment>
-        <MenuItem onClick={handleClose}>
-          <Link to="/dashboard">Dashboard</Link>
-        </MenuItem>
-        <MenuItem
-          onClick={() => {
-            dispatch(logout());
-            navigate('/products');
-            setAnchorEl(null);
-          }}
+    conditionalMenu.push(
+      <MenuItem onClick={handleClose} key={Math.random()}>
+        <Link
+          sx={{ textDecoration: 'none' }}
+          component={RouterLink}
+          to="/dashboard"
         >
-          Logout
-        </MenuItem>
-      </React.Fragment>
+          Dashboard
+        </Link>
+      </MenuItem>
     );
-  } else if (isLoggedIn === LOGGED_IN && userRole === USER) {
-    conditionalMenu = (
+    conditionalMenu.push(
       <MenuItem
+        key={Math.random()}
         onClick={() => {
           dispatch(logout());
           navigate('/products');
           setAnchorEl(null);
         }}
+        style={{ color: theme.palette.primary.main }}
+      >
+        Logout
+      </MenuItem>
+    );
+  } else if (isLoggedIn === LOGGED_IN && userRole === USER) {
+    conditionalMenu.push(
+      <MenuItem
+        key={Math.random()}
+        onClick={() => {
+          dispatch(logout());
+          navigate('/products');
+          setAnchorEl(null);
+        }}
+        style={{ color: theme.palette.primary.main }}
       >
         Logout
       </MenuItem>
     );
   } else {
-    conditionalMenu = (
-      <div>
-        <MenuItem onClick={handleClose}>
-          <Link to="/login">Log In</Link>
-        </MenuItem>
-        <MenuItem onClick={handleClose}>
-          <Link to="/signup">Sign Up</Link>
-        </MenuItem>
-      </div>
+    conditionalMenu.push(
+      <MenuItem onClick={handleClose} key={Math.random()}>
+        <Link
+          sx={{ textDecoration: 'none' }}
+          component={RouterLink}
+          to="/login"
+        >
+          Log In
+        </Link>
+      </MenuItem>
+    );
+    conditionalMenu.push(
+      <MenuItem key={Math.random()} onClick={handleClose}>
+        <Link
+          sx={{ textDecoration: 'none' }}
+          component={RouterLink}
+          to="/signup"
+        >
+          Sign Up
+        </Link>
+      </MenuItem>
     );
   }
 
@@ -87,7 +111,13 @@ export default function BasicMenu() {
         }}
       >
         <MenuItem onClick={handleClose}>
-          <Link to="/products">Products</Link>
+          <Link
+            component={RouterLink}
+            sx={{ textDecoration: 'none' }}
+            to="/products"
+          >
+            Products
+          </Link>
         </MenuItem>
         {conditionalMenu}
       </Menu>

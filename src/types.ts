@@ -34,6 +34,21 @@ export interface LogInAction {
   token: string;
 }
 
+export interface ItemCardProps {
+  id: number;
+  title: string;
+  price: number;
+  description: string;
+  category: string;
+  image: string;
+  rating: {
+    rate: number;
+    count: number;
+  };
+  quantity: number;
+  handleClick: () => void;
+}
+
 // export interface DeleteAction {
 //   id: number;
 // }

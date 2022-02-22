@@ -6,12 +6,13 @@ import {
   Modal,
   Grid,
   IconButton,
+  Badge,
 } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { modalStyle } from '../../constants';
 import ItemShopCart from './ItemShopCart';
 import { useSelector } from 'react-redux';
-import { getShopCartList } from '../../redux/store';
+import { getShopCartList, getShopCartTotalItems } from '../../redux/store';
 import { ShopItem } from '../../types';
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
@@ -21,6 +22,7 @@ export default function ShoppingCart() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const shopCartList = useSelector(getShopCartList);
+  const totalNbOfItems = useSelector(getShopCartTotalItems);
 
   let totalPrice = 0;
   for (let i = 0; i < shopCartList.length; i++) {
@@ -35,17 +37,17 @@ export default function ShoppingCart() {
     );
   }
 
-  let buyButton: JSX.Element = <p></p>;
+  let buyButton: JSX.Element = <div></div>;
   let title = (
-    <p>
+    <div>
       Shopping Cart Empty <SentimentVeryDissatisfiedIcon />
-    </p>
+    </div>
   );
 
   let totalPriceText = '';
 
   if (shopCartList.length) {
-    title = <p>Shopping Cart:</p>;
+    title = <div>Shopping Cart:</div>;
     totalPriceText = 'TOTAL: ' + totalPrice.toFixed(2) + ' lei';
     buyButton = (
       <IconButton
@@ -66,7 +68,9 @@ export default function ShoppingCart() {
   return (
     <React.Fragment>
       <Button onClick={handleOpen}>
-        <ShoppingCartIcon color="secondary"></ShoppingCartIcon>
+        <Badge badgeContent={totalNbOfItems} color="warning">
+          <ShoppingCartIcon color="secondary"></ShoppingCartIcon>
+        </Badge>
       </Button>
       <Modal
         open={open}
