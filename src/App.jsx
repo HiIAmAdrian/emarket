@@ -9,6 +9,7 @@ import { getItems } from './redux/reducerProducts';
 import Dashboard from './components/pages/admin page/Dashboard';
 import { getUserRole } from './redux/store';
 import { ADMIN } from './constants';
+import { login } from './redux/reducerAuth';
 
 function App() {
   const dispatch = useDispatch();
@@ -17,6 +18,10 @@ function App() {
   useEffect(() => {
     dispatch(getItems());
   }, [dispatch, localStorage.getItem('numberOfItems')]);
+
+  useEffect(() => {
+    dispatch(login({ token: JSON.parse(localStorage.getItem('userToken')) }));
+  }, []);
 
   return (
     <BrowserRouter>
