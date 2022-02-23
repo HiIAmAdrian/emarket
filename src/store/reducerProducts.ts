@@ -1,12 +1,11 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { BACKEND_URL, LOADING, NOT_LOADING } from '../constants';
+import { getNbOfItems } from '../services/storageHandle';
 import { ShopSliceState } from '../types';
 
 export const getItems = createAsyncThunk('products/getItems', async () => {
-  let limit = 20;
-  if (localStorage.getItem('numberOfItems'))
-    limit = JSON.parse(localStorage.getItem('numberOfItems') as string);
+  const limit = getNbOfItems() ? getNbOfItems() : 20;
 
   const { data } = await axios.get(`${BACKEND_URL}/products?limit=${limit}`);
 
@@ -15,20 +14,22 @@ export const getItems = createAsyncThunk('products/getItems', async () => {
 
 const shopSlice = createSlice({
   name: 'shopList',
-  initialState: { shopList: [], isLoading: NOT_LOADING } as ShopSliceState,
+  initialState: {
+    shopList: [],
+    isLoading: NOT_LOADING,
+  } as ShopSliceState,
   reducers: {},
-  //builder callback
-  extraReducers: {
-    [getItems.pending as unknown as string]: (state) => {
+  extraReducers: (builder) => {
+    builder.addCase(getItems.pending, (state) => {
       state.isLoading = LOADING;
-    },
-    [getItems.fulfilled as unknown as string]: (state, action) => {
+    });
+    builder.addCase(getItems.fulfilled, (state, action) => {
       state.shopList = action.payload;
       state.isLoading = NOT_LOADING;
-    },
-    [getItems.rejected as unknown as string]: (state) => {
+    });
+    builder.addCase(getItems.rejected, (state) => {
       state.isLoading = NOT_LOADING;
-    },
+    });
   },
 });
 

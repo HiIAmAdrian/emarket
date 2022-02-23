@@ -8,7 +8,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getItems } from './store/reducerProducts';
 import { getUserAuthState, getUserRole } from './store/store';
 import { ADMIN, LOGGED_IN } from './constants';
-import { login } from './store/reducerAuth';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert, { AlertProps } from '@mui/material/Alert';
 import { useUpdateEffect } from 'react-use';
@@ -39,23 +38,13 @@ function App() {
     setOpen(false);
   };
 
+  //somehow i need to open the snackbars only on login and logout actions, pass down the set open to children
   useUpdateEffect(() => {
     setOpen(true);
   }, [authState]);
 
   useEffect(() => {
     dispatch(getItems());
-  }, []);
-
-  //initial state la reducer
-  useEffect(() => {
-    if (localStorage.getItem('userToken'))
-      dispatch(
-        login({
-          //specific func
-          token: JSON.parse(localStorage.getItem('userToken') as string),
-        })
-      );
   }, []);
 
   return (

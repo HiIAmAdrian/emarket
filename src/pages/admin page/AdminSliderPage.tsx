@@ -4,6 +4,7 @@ import Slider from '@mui/material/Slider';
 import { Typography } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { getItems } from '../../store/reducerProducts';
+import { getNbOfItems, setNbOfItems } from '../../services/storageHandle';
 
 export default function SliderItems() {
   const dispatch = useDispatch();
@@ -13,16 +14,11 @@ export default function SliderItems() {
       <Typography> Number of Shop Items for Display: </Typography>
       <Slider
         aria-label="NumberOfItems"
-        defaultValue={JSON.parse(
-          localStorage.getItem('numberOfItems') as string
-        )}
+        defaultValue={getNbOfItems()}
         valueLabelDisplay="auto"
         step={1}
         onChange={(e) => {
-          localStorage.setItem(
-            'numberOfItems',
-            JSON.stringify((e.target as HTMLTextAreaElement).value)
-          );
+          setNbOfItems((e.target as HTMLTextAreaElement).value);
           dispatch(getItems());
         }}
         marks

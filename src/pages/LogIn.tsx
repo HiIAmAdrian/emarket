@@ -21,6 +21,7 @@ import { login } from '../store/reducerAuth';
 import { useNavigate, Link as RouterLink } from 'react-router-dom';
 import { DONT_CLICK_URL, ADMIN_NAME } from '../constants';
 import Header from './Header';
+import { setUserName } from '../services/storageHandle';
 
 function Copyright() {
   return (
@@ -49,18 +50,20 @@ export default function LogIn() {
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
+    const username = data.get('username');
+    const password = data.get('password');
     //api req in one file
     //
     axios
       .post('https://fakestoreapi.com/auth/login', {
-        username: data.get('username'),
-        password: data.get('password'),
+        username,
+        password,
       })
       .then((res) => {
-        localStorage.setItem('userName', JSON.stringify(data.get('username')));
+        setUserName(username as string);
         dispatch(login(res.data));
-        if (data.get('username') === ADMIN_NAME) {
-          navigate('/dashboard');
+        if (username === ADMIN_NAME) {
+          navigate('/admin');
         } else {
           navigate('/products');
         }
