@@ -1,10 +1,10 @@
 import React from 'react';
-import { getShopList } from '../store/store';
+import { getShopList } from '../../store/store';
 import { useSelector } from 'react-redux';
-import ItemCard from '../components/ItemCard';
+import ItemCard from './components/ItemCard';
 import { Alert, Grid } from '@mui/material';
-import { ShopItem } from '../types';
-import Header from './Header';
+import { ShopItem } from '../../types';
+import Header from '../../common/Header';
 import Snackbar from '@mui/material/Snackbar';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';

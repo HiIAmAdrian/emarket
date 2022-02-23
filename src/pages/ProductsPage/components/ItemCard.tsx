@@ -17,10 +17,10 @@ import {
 import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { LOGGED } from '../constants';
-import { addToShopCart } from '../store/reducerAuth';
-import { getUserAuthState } from '../store/store';
-import { ShopItem } from '../types';
+import { LOGGED } from '../../../constants';
+import { addToShopCart } from '../../../store/reducerAuth';
+import { getUserAuthState } from '../../../store/store';
+import { ShopItem } from '../../../types';
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;

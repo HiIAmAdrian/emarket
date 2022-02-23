@@ -17,7 +17,7 @@ import {
 import { Link as RouterLink } from 'react-router-dom';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import axios from 'axios';
-import Header from './Header';
+import Header from '../../common/Header';
 
 function Copyright() {
   return (

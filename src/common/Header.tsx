@@ -1,6 +1,6 @@
 import { AppBar, Toolbar } from '@mui/material';
-import BasicMenu from '../components/BasicMenu';
-import ShoppingCart from '../components/ShoppingCart';
+import BasicMenu from './BasicMenu';
+import ShoppingCart from './ShoppingCart';
 import StorefrontSharpIcon from '@mui/icons-material/StorefrontSharp';
 import React from 'react';
 

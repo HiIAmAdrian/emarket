@@ -11,9 +11,9 @@ import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import AddressForm from '../components/AddressForm';
-import PaymentForm from '../components/PaymentForm';
-import Review from '../components/Review';
+import AddressForm from './components/AddressForm';
+import PaymentForm from './components/PaymentForm';
+import Review from './components/Review';
 
 const steps = ['Shipping address', 'Payment details', 'Review your order'];
 

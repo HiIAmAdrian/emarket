@@ -2,11 +2,11 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { ADMIN } from './constants';
-import AdminPage from './pages/admin page/AdminPage';
-import Checkout from './pages/Checkout';
-import LogIn from './pages/LogIn';
-import Products from './pages/Products';
-import SignUp from './pages/SignUp';
+import AdminPage from './pages/AdminPage/AdminPage';
+import Checkout from './pages/CheckoutPage/Checkout';
+import LogIn from './pages/LoginPage/LogIn';
+import Products from './pages/ProductsPage/Products';
+import SignUp from './pages/SignupPage/SignUp';
 import { getUserRole } from './store/store';
 
 function RoutesApp() {
