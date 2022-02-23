@@ -95,6 +95,9 @@ const authSlice = createSlice({
             }
       );
     },
+    emptyShoppingCart(state) {
+      state.shopCartList = [];
+    },
   },
 
   extraReducers: (builder) => {
@@ -109,7 +112,7 @@ const authSlice = createSlice({
     });
     builder.addCase(loginUserThunk.rejected, (state) => {
       state.loggingState = LOGIN_FAILED;
-      console.log(LOGIN_FAILED);
+      alert('Login Failed! Try changing your credentials.');
     });
   },
 });
@@ -120,6 +123,7 @@ export const {
   addToShopCart,
   deleteFromShoppingCart,
   setQuantityOfProduct,
+  emptyShoppingCart,
 } = authSlice.actions;
 
 export default authSlice;

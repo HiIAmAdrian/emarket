@@ -91,7 +91,7 @@ export default function ShoppingCart() {
       >
         <Box sx={modalStyle}>
           <Grid container spacing={2}>
-            <Grid item>
+            <Grid item sx={{ margin: 'auto' }}>
               <Typography id="modal-modal-title" variant="h6" component="h2">
                 {title}
               </Typography>

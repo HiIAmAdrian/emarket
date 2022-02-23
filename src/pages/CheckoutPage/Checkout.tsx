@@ -14,6 +14,16 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import AddressForm from './components/AddressForm';
 import PaymentForm from './components/PaymentForm';
 import Review from './components/Review';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  getAddressObject,
+  getPaymentDetailObject,
+  getShopCartList,
+} from '../../store/store';
+import { Order } from '../../types';
+import { useNavigate } from 'react-router-dom';
+import { processOrder } from '../../store/reducerCheckout';
+import { emptyShoppingCart } from '../../store/reducerAuth';
 
 const steps = ['Shipping address', 'Payment details', 'Review your order'];
 
@@ -34,6 +44,22 @@ const theme = createTheme();
 
 export default function Checkout() {
   const [activeStep, setActiveStep] = React.useState(0);
+  const shopCart = useSelector(getShopCartList);
+  const paymentDetails = useSelector(getPaymentDetailObject);
+  const shippingAddress = useSelector(getAddressObject);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  function handlePlaceOrder() {
+    const order: Order = {
+      shippingAddress,
+      paymentDetails,
+      shopCart,
+    };
+    dispatch(processOrder(order));
+    navigate('/orderplaced');
+    dispatch(emptyShoppingCart());
+  }
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);
@@ -97,13 +123,24 @@ export default function Checkout() {
                       Back
                     </Button>
                   )}
-                  <Button
-                    variant="contained"
-                    onClick={handleNext}
-                    sx={{ mt: 3, ml: 1 }}
-                  >
-                    {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
-                  </Button>
+
+                  {activeStep === steps.length - 1 ? (
+                    <Button
+                      variant="contained"
+                      onClick={handlePlaceOrder}
+                      sx={{ mt: 3, ml: 1 }}
+                    >
+                      {'Place Order'}
+                    </Button>
+                  ) : (
+                    <Button
+                      variant="contained"
+                      onClick={handleNext}
+                      sx={{ mt: 3, ml: 1 }}
+                    >
+                      {'Next'}
+                    </Button>
+                  )}
                 </Box>
               </React.Fragment>
             )}

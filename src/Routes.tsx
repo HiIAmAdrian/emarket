@@ -4,6 +4,7 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { ADMIN } from './constants';
 import AdminPage from './pages/AdminPage/AdminPage';
 import Checkout from './pages/CheckoutPage/Checkout';
+import OrderPlaced from './pages/CheckoutPage/OrderPlaced';
 import LogIn from './pages/LoginPage/LogIn';
 import Products from './pages/ProductsPage/Products';
 import SignUp from './pages/SignupPage/SignUp';
@@ -26,6 +27,7 @@ function RoutesApp() {
           }
         />
         <Route path="/checkout" element={<Checkout />} />
+        <Route path="/orderplaced" element={<OrderPlaced />} />
       </Routes>
     </BrowserRouter>
   );

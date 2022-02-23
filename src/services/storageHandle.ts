@@ -1,3 +1,5 @@
+import { ShopItem, Order } from '../types';
+
 export function getUserToken(): string {
   return JSON.parse(localStorage.getItem('userToken') as string);
 }
@@ -28,4 +30,14 @@ export function getNbOfItems(): number {
 
 export function setNbOfItems(nb: string): void {
   localStorage.setItem('numberOfItems', JSON.stringify(nb));
+}
+
+export function setOrder(order: Order): void {
+  const lastOrderId = new Date().toISOString();
+  console.log(lastOrderId);
+  localStorage.setItem(`orderId: ${lastOrderId}`, JSON.stringify(order));
+}
+
+export function getOrder(id: number): ShopItem[] {
+  return JSON.parse(localStorage.getItem(`orderId: ${id}`) as string);
 }

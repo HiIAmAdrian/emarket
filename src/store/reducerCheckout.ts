@@ -1,25 +1,73 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { setOrder } from '../services/storageHandle';
+import { ShippingAddress, PaymentDetails, Order } from '../types';
 
 interface CheckoutSliceState {
-  address: string[];
-  paymentDetails: {
-    cardCVV: string;
-    cardHolder: string;
-    cardNumber: string;
-    expiryDate: string;
-  };
+  address: ShippingAddress;
+  paymentDetails: PaymentDetails;
+  currentSessionOrders: number;
+}
+
+interface SetDetail {
+  field: string;
+  detail: string;
 }
 
 const checkoutSlice = createSlice({
   name: 'checkout',
   initialState: {
-    address: [''],
+    address: {
+      firstName: '',
+      lastName: '',
+      address: '',
+      city: '',
+      state: '',
+      zip: '',
+      country: '',
+    },
     paymentDetails: {
       cardHolder: '',
       cardNumber: '',
       cardCVV: '',
       expiryDate: '',
     },
+    currentSessionOrders: 0,
   } as CheckoutSliceState,
-  reducers: {},
+  reducers: {
+    setAdressDetail(state, action: PayloadAction<SetDetail>) {
+      state.address[action.payload.field as keyof ShippingAddress] =
+        action.payload.detail;
+    },
+    setPaymentDetail(state, action: PayloadAction<SetDetail>) {
+      state.paymentDetails[action.payload.field as keyof PaymentDetails] =
+        action.payload.detail;
+    },
+    processOrder(state, action: PayloadAction<Order>) {
+      setOrder(action.payload);
+      state.currentSessionOrders = state.currentSessionOrders + 1;
+      state = {
+        ...state,
+        address: {
+          firstName: '',
+          lastName: '',
+          address: '',
+          city: '',
+          state: '',
+          zip: '',
+          country: '',
+        },
+        paymentDetails: {
+          cardHolder: '',
+          cardNumber: '',
+          cardCVV: '',
+          expiryDate: '',
+        },
+      };
+    },
+  },
 });
+
+export const { setAdressDetail, setPaymentDetail, processOrder } =
+  checkoutSlice.actions;
+
+export default checkoutSlice;

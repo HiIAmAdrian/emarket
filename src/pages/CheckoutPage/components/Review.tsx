@@ -4,39 +4,31 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Typography from '@mui/material/Typography';
 import * as React from 'react';
-
-const products = [
-  {
-    name: 'Product 1',
-    desc: 'A nice thing',
-    price: '$9.99',
-  },
-  {
-    name: 'Product 2',
-    desc: 'Another thing',
-    price: '$3.45',
-  },
-  {
-    name: 'Product 3',
-    desc: 'Something else',
-    price: '$6.51',
-  },
-  {
-    name: 'Product 4',
-    desc: 'Best thing of all',
-    price: '$14.11',
-  },
-  { name: 'Shipping', desc: '', price: 'Free' },
-];
-const addresses = ['1 MUI Drive', 'Reactville', 'Anytown', '99999', 'USA'];
-const payments = [
-  { name: 'Card type', detail: 'Visa' },
-  { name: 'Card holder', detail: 'Mr John Smith' },
-  { name: 'Card number', detail: 'xxxx-xxxx-xxxx-1234' },
-  { name: 'Expiry date', detail: '04/2024' },
-];
+import { useSelector } from 'react-redux';
+import {
+  getCustomerAdress,
+  getPaymentDetailObject,
+  getShopCartList,
+  getShopCartTotalPrice,
+} from '../../../store/store';
 
 export default function Review() {
+  const products = useSelector(getShopCartList);
+  const total = useSelector(getShopCartTotalPrice);
+  const address = useSelector(getCustomerAdress);
+  const paymentDetails = useSelector(getPaymentDetailObject);
+  const addressJSX: JSX.Element[] = [];
+
+  const payments = [
+    { name: 'Card holder:', detail: paymentDetails.cardHolder },
+    { name: 'Card number:', detail: paymentDetails.cardNumber },
+    { name: 'Expiry date:', detail: paymentDetails.expiryDate },
+  ];
+
+  for (const item of Object.values(address)) {
+    addressJSX.push(<Typography key={Math.random()}>{item}</Typography>);
+  }
+
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
@@ -44,15 +36,20 @@ export default function Review() {
       </Typography>
       <List disablePadding>
         {products.map((product) => (
-          <ListItem key={product.name} sx={{ py: 1, px: 0 }}>
-            <ListItemText primary={product.name} secondary={product.desc} />
-            <Typography variant="body2">{product.price}</Typography>
+          <ListItem key={product.title} sx={{ py: 1, px: 0 }}>
+            <ListItemText
+              primary={product.title}
+              secondary={product.category}
+            />
+            <Typography variant="body2">
+              {(product.price * product.quantity).toFixed(2)}
+            </Typography>
           </ListItem>
         ))}
         <ListItem sx={{ py: 1, px: 0 }}>
           <ListItemText primary="Total" />
           <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
-            $34.06
+            {total.toFixed(2)} lei
           </Typography>
         </ListItem>
       </List>
@@ -61,8 +58,7 @@ export default function Review() {
           <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
             Shipping
           </Typography>
-          <Typography gutterBottom>John Smith</Typography>
-          <Typography gutterBottom>{addresses.join(', ')}</Typography>
+          {addressJSX}
         </Grid>
         <Grid item container direction="column" xs={12} sm={6}>
           <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
