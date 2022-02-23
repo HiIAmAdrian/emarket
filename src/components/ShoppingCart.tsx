@@ -1,25 +1,24 @@
-import * as React from 'react';
+import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import {
+  Badge,
   Box,
   Button,
-  Typography,
-  Modal,
   Grid,
   IconButton,
-  Badge,
+  Modal,
+  Typography,
 } from '@mui/material';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import { modalStyle } from '../constants';
-import ItemShopCart from './ItemShopCart';
+import * as React from 'react';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import {
   getShopCartList,
   getShopCartTotalItems,
   getShopCartTotalPrice,
 } from '../store/store';
 import { ShopItem } from '../types';
-import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
-import { useNavigate } from 'react-router-dom';
+import ItemShopCart from './ItemShopCart';
 
 export default function ShoppingCart() {
   const [open, setOpen] = React.useState(false);
@@ -62,6 +61,20 @@ export default function ShoppingCart() {
       </IconButton>
     );
   }
+
+  const modalStyle = {
+    position: 'absolute',
+    top: '50%',
+    maxHeight: '80%',
+    overflow: 'scroll',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: '85%',
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    p: 4,
+  };
 
   return (
     <React.Fragment>

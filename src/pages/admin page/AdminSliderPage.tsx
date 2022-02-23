@@ -1,10 +1,10 @@
-import * as React from 'react';
+import { Typography } from '@mui/material';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
-import { Typography } from '@mui/material';
+import * as React from 'react';
 import { useDispatch } from 'react-redux';
-import { getItems } from '../../store/reducerProducts';
 import { getNbOfItems, setNbOfItems } from '../../services/storageHandle';
+import { getItems } from '../../store/reducerProducts';
 
 export default function SliderItems() {
   const dispatch = useDispatch();

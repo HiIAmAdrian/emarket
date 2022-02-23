@@ -1,7 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
-import shopList from './reducerProducts';
 import auth from './reducerAuth';
-import { RootState } from '../types';
+import shopList from './reducerProducts';
 
 const store = configureStore({
   reducer: {
@@ -10,9 +9,11 @@ const store = configureStore({
   },
 });
 
+type RootState = ReturnType<typeof store.getState>;
+
 export const getShopList = (state: RootState) => state.shopList.shopList;
 export const getShopCartList = (state: RootState) => state.auth.shopCartList;
-export const getUserAuthState = (state: RootState) => state.auth.loginState;
+export const getUserAuthState = (state: RootState) => state.auth.loggingState;
 export const getUserRole = (state: RootState) => state.auth.userRole;
 export const getShopCartTotalItems = (state: RootState) => {
   let sum = 0;

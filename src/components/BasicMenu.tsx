@@ -1,12 +1,11 @@
-import * as React from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
-import { useNavigate, Link as RouterLink } from 'react-router-dom';
-import { Link } from '@mui/material';
+import { Button, Link, Menu, MenuItem } from '@mui/material';
+import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
+import { ADMIN, LOGGED, USER } from '../constants';
 import { logout } from '../store/reducerAuth';
 import { getUserAuthState, getUserRole } from '../store/store';
-import { ADMIN, LOGGED_IN, USER } from '../constants';
-import { Button, Menu, MenuItem } from '@mui/material';
 import theme from '../theme';
 
 export default function BasicMenu() {
@@ -26,7 +25,7 @@ export default function BasicMenu() {
 
   const conditionalMenu: JSX.Element[] = [];
 
-  if (isLoggedIn === LOGGED_IN && userRole === ADMIN) {
+  if (isLoggedIn === LOGGED && userRole === ADMIN) {
     conditionalMenu.push(
       <MenuItem onClick={handleClose} key={Math.random()}>
         <Link
@@ -51,7 +50,7 @@ export default function BasicMenu() {
         Logout
       </MenuItem>
     );
-  } else if (isLoggedIn === LOGGED_IN && userRole === USER) {
+  } else if (isLoggedIn === LOGGED && userRole === USER) {
     conditionalMenu.push(
       <MenuItem
         key={Math.random()}

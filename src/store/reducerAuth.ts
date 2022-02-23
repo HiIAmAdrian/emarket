@@ -1,30 +1,67 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { LOGGED_IN, LOGGED_OUT, USER, ADMIN, ADMIN_NAME } from '../constants';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import axios from 'axios';
+import {
+  ADMIN,
+  LOGGED,
+  LOGGING,
+  LOGIN_FAILED,
+  LOGIN_URL,
+  NOT_LOGGED,
+  USER,
+} from '../constants';
 import {
   getUserName,
   getUserToken,
   removeUserName,
   removeUserToken,
+  setUserName,
   setUserToken,
 } from '../services/storageHandle';
-import { AuthSliceState, LogInAction, SetQuantity, ShopItem } from '../types';
+import { SetQuantity, ShopItem } from '../types';
+
+const ADMIN_NAME = 'mor_2314';
+
+interface LogInAction {
+  token: string;
+}
+
+interface AuthSliceState {
+  userRole: string;
+  shopCartList: ShopItem[];
+  loggingState: string;
+}
+
+interface UserType {
+  username: string;
+  password: string;
+}
+
+export const loginUserThunk = createAsyncThunk(
+  'user/login',
+  async (user: UserType) => {
+    const { data } = await axios.post(LOGIN_URL, user);
+
+    return { ...data, username: user.username };
+  }
+);
 
 const authSlice = createSlice({
   name: 'auth',
   initialState: {
-    loginState: getUserToken() ? LOGGED_IN : LOGGED_OUT,
     userRole: getUserName() === ADMIN_NAME ? ADMIN : USER,
     shopCartList: [],
+    loggingState: getUserToken() ? LOGGED : NOT_LOGGED,
   } as AuthSliceState,
+
   reducers: {
     logout(state) {
-      state.loginState = LOGGED_OUT;
+      state.loggingState = NOT_LOGGED;
       state.shopCartList = [];
       removeUserName();
       removeUserToken();
     },
     login(state, action: PayloadAction<LogInAction>) {
-      state.loginState = LOGGED_IN;
+      state.loggingState = LOGGED;
       setUserToken(action.payload.token);
       state.userRole = getUserName() === ADMIN_NAME ? ADMIN : USER;
     },
@@ -58,6 +95,22 @@ const authSlice = createSlice({
             }
       );
     },
+  },
+
+  extraReducers: (builder) => {
+    builder.addCase(loginUserThunk.pending, (state) => {
+      state.loggingState = LOGGING;
+    });
+    builder.addCase(loginUserThunk.fulfilled, (state, action) => {
+      state.loggingState = LOGGED;
+      setUserName(action.payload.username);
+      setUserToken(action.payload.token);
+      state.userRole = getUserName() === ADMIN_NAME ? ADMIN : USER;
+    });
+    builder.addCase(loginUserThunk.rejected, (state) => {
+      state.loggingState = LOGIN_FAILED;
+      console.log(LOGIN_FAILED);
+    });
   },
 });
 

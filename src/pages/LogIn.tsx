@@ -15,13 +15,13 @@ import {
   ThemeProvider,
 } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import axios from 'axios';
-import { useDispatch } from 'react-redux';
-import { login } from '../store/reducerAuth';
-import { useNavigate, Link as RouterLink } from 'react-router-dom';
-import { DONT_CLICK_URL, ADMIN_NAME } from '../constants';
+import { useDispatch, useSelector } from 'react-redux';
+import { loginUserThunk } from '../store/reducerAuth';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
+import { ADMIN, DONT_CLICK_URL, LOGGED } from '../constants';
 import Header from './Header';
-import { setUserName } from '../services/storageHandle';
+import { useEffect } from 'react';
+import { getUserAuthState, getUserRole } from '../store/store';
 
 function Copyright() {
   return (
@@ -45,30 +45,31 @@ const theme = createTheme();
 
 export default function LogIn() {
   const dispatch = useDispatch();
+  const userRole = useSelector(getUserRole);
+  const authState = useSelector(getUserAuthState);
+
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (authState === LOGGED) {
+      if (userRole === ADMIN) {
+        navigate('/admin');
+      } else {
+        navigate('/products');
+      }
+    }
+  }, [authState]);
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    const username = data.get('username');
-    const password = data.get('password');
-    //api req in one file
-    //
-    axios
-      .post('https://fakestoreapi.com/auth/login', {
-        username,
-        password,
-      })
-      .then((res) => {
-        setUserName(username as string);
-        dispatch(login(res.data));
-        if (username === ADMIN_NAME) {
-          navigate('/admin');
-        } else {
-          navigate('/products');
-        }
-      })
-      .catch((err) => console.log(err));
+    const username = data.get('username') as string;
+    const password = data.get('password') as string;
+    if (username && password) {
+      dispatch(loginUserThunk({ username, password }));
+    } else {
+      alert('Fill both fields!');
+    }
   }
 
   return (

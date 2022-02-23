@@ -1,5 +1,14 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { CheckoutSliceState } from '../types';
+import { createSlice } from '@reduxjs/toolkit';
+
+interface CheckoutSliceState {
+  address: string[];
+  paymentDetails: {
+    cardCVV: string;
+    cardHolder: string;
+    cardNumber: string;
+    expiryDate: string;
+  };
+}
 
 const checkoutSlice = createSlice({
   name: 'checkout',
@@ -8,7 +17,7 @@ const checkoutSlice = createSlice({
     paymentDetails: {
       cardHolder: '',
       cardNumber: '',
-      cardType: '',
+      cardCVV: '',
       expiryDate: '',
     },
   } as CheckoutSliceState,

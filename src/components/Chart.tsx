@@ -1,12 +1,12 @@
-import * as React from 'react';
 import { useTheme } from '@mui/material/styles';
+import * as React from 'react';
 import {
-  LineChart,
+  Label,
   Line,
+  LineChart,
+  ResponsiveContainer,
   XAxis,
   YAxis,
-  Label,
-  ResponsiveContainer,
 } from 'recharts';
 import Title from './Title';
 

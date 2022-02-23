@@ -43,65 +43,30 @@ export default function SignUp() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    // eslint-disable-next-line no-console
-    console.log({
-      firstName: data.get('firstName'),
-      lastName: data.get('lastName'),
-      email: data.get('email'),
-      password: data.get('password'),
-    });
 
-    fetch('https://fakestoreapi.com/users', {
-      method: 'POST',
-      body: JSON.stringify({
-        email: 'John@dsadsadgmail.com',
-        username: 'johsdadsand',
-        password: 'm38rdsadmF$',
-        name: {
-          firstname: 'John',
-          lastname: 'Doe',
-        },
-        address: {
-          city: 'kilcdsadoole',
-          street: '783dsads5 new road',
-          number: 3,
-          zipcode: '129adsad26-3874',
+    axios
+      .post('https://fakestoreapi.com/users', {
+        username: 'dada',
+        phone: '1-222-222-2222',
+        adress: {
+          city: 'dada',
+          street: 'dada',
+          number: 23,
+          zipcode: '23423-2222',
           geolocation: {
-            lat: '-sads.3159',
-            long: '81ad.1496',
+            lat: '-34.2312',
+            long: '32.4343',
           },
         },
-        phone: '1-570-dsa236-7033',
-      }),
-    })
-      .then((res) => res.json())
-      .then((json) => console.log(json));
-    //  axios.post('https://fakestoreapi.com/users', {
-    //     username: "dada",
-    //     phone: "1-222-222-2222",
-    //     adress:{
-    //         city:"dada",
-    //         street:"dada",
-    //         number: 23,
-    //         zipcode: "23423-2222",
-    //         geolocation: {
-    //             lat: "-34.2312",
-    //             long: "32.4343"
-    //         }
-    //     },
-    //     name:{
-    //     firstname: data.get('firstName'),
-    //     lastname: data.get('lastName')
-    //     },
-    //     email: data.get('email'),
-    //     password: data.get('password')
-    // }).then(response => console.log(response)).catch(error => console.log(error));
-  };
-
-  const handleGet = () => {
-    axios
-      .get('https://fakestoreapi.com/users')
-      .then((response) => console.log(response.data));
+        name: {
+          firstname: data.get('firstName'),
+          lastname: data.get('lastName'),
+        },
+        email: data.get('email'),
+        password: data.get('password'),
+      })
+      .then((response) => console.log(response))
+      .catch((error) => console.log(error));
   };
 
   return (
@@ -192,9 +157,6 @@ export default function SignUp() {
                   sx={{ mt: 3, mb: 2 }}
                 >
                   Sign Up
-                </Button>
-                <Button onClick={handleGet} fullWidth sx={{ mt: 3, mb: 2 }}>
-                  Get Users
                 </Button>
                 <Grid container justifyContent="flex-end">
                   <Grid item>

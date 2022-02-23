@@ -1,9 +1,9 @@
-import * as React from 'react';
-import Typography from '@mui/material/Typography';
+import Checkbox from '@mui/material/Checkbox';
+import FormControlLabel from '@mui/material/FormControlLabel';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
+import Typography from '@mui/material/Typography';
+import * as React from 'react';
 
 export default function PaymentForm() {
   return (

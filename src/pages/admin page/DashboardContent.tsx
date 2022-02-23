@@ -1,8 +1,8 @@
 import { Grid, Paper } from '@mui/material';
+import React from 'react';
 import Chart from '../../components/Chart';
 import Deposits from '../../components/Deposits';
 import Orders from '../../components/Orders';
-import React from 'react';
 
 function DashboardContent() {
   return (

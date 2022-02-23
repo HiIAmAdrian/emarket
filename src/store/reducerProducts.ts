@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { BACKEND_URL, LOADING, NOT_LOADING } from '../constants';
 import { getNbOfItems } from '../services/storageHandle';
-import { ShopSliceState } from '../types';
+import { ShopItem } from '../types';
 
 export const getItems = createAsyncThunk('products/getItems', async () => {
   const limit = getNbOfItems() ? getNbOfItems() : 20;
@@ -11,6 +11,11 @@ export const getItems = createAsyncThunk('products/getItems', async () => {
 
   return data;
 });
+
+interface ShopSliceState {
+  shopList: ShopItem[];
+  isLoading: boolean;
+}
 
 const shopSlice = createSlice({
   name: 'shopList',

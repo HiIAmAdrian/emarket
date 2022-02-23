@@ -1,22 +1,21 @@
-import * as React from 'react';
-import {
-  CardContent,
-  CardMedia,
-  CardHeader,
-  Card,
-  IconButton,
-  Typography,
-  TextField,
-} from '@mui/material';
-import { ShopItem } from '../types';
-import { useState } from 'react';
 import DeleteIcon from '@mui/icons-material/Delete';
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardMedia,
+  IconButton,
+  TextField,
+  Typography,
+} from '@mui/material';
+import * as React from 'react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { SetQuantity } from '../types';
 import {
   deleteFromShoppingCart,
   setQuantityOfProduct,
 } from '../store/reducerAuth';
+import { SetQuantity, ShopItem } from '../types';
 
 export default function ItemShopCart(props: ShopItem) {
   const { id, title, price, image, quantity } = props;

@@ -1,25 +1,30 @@
-import * as React from 'react';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import {
+  Card,
   CardActions,
   CardContent,
-  CardMedia,
   CardHeader,
-  Card,
+  CardMedia,
   Collapse,
   IconButton,
-  Typography,
+  IconButtonProps,
   Rating,
   styled,
+  Typography,
 } from '@mui/material';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
-import { ExpandMoreProps, ItemCardProps, ShopItem } from '../types';
-import { useSelector, useDispatch } from 'react-redux';
-import { getUserAuthState } from '../store/store';
-import { LOGGED_IN } from '../constants';
-import { addToShopCart } from '../store/reducerAuth';
+import * as React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { LOGGED } from '../constants';
+import { addToShopCart } from '../store/reducerAuth';
+import { getUserAuthState } from '../store/store';
+import { ShopItem } from '../types';
+
+interface ExpandMoreProps extends IconButtonProps {
+  expand: boolean;
+}
 
 const ExpandMore = styled((props: ExpandMoreProps) => {
   // eslint-disable-next-line no-unused-vars
@@ -33,6 +38,10 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
     duration: theme.transitions.duration.shortest,
   }),
 }));
+
+interface ItemCardProps extends ShopItem {
+  handleClick: () => void;
+}
 
 export default function ItemCard(props: ItemCardProps) {
   const { title, price, description, category, image, rating, handleClick } =
@@ -87,7 +96,7 @@ export default function ItemCard(props: ItemCardProps) {
       <CardActions disableSpacing>
         <IconButton
           onClick={
-            isLoggedIn === LOGGED_IN
+            isLoggedIn === LOGGED
               ? () => {
                   const shopItem: Partial<ItemCardProps> = Object.assign(
                     {},
