@@ -40,3 +40,33 @@ export function setOrder(order: Order): void {
 export function getOrder(id: number): ShopItem[] {
   return JSON.parse(localStorage.getItem(`orderId: ${id}`) as string);
 }
+
+export function getOrders() {
+  const ordersKeys = Object.keys(localStorage).filter(
+    (item) => !item.slice(0, 8).localeCompare('orderId:')
+  );
+
+  let orders = ordersKeys.map((key) =>
+    JSON.parse(localStorage.getItem(key) as string)
+  );
+
+  interface Options {
+    year: 'numeric';
+    month: 'short';
+    day: 'numeric';
+  }
+  const op: Options = { year: 'numeric', month: 'short', day: 'numeric' };
+  orders = orders.map((order, index) => {
+    return {
+      ...order,
+      timestamp: new Date(
+        ordersKeys[index].split(' ').pop() as string
+      ).toLocaleDateString('en-GB', op),
+    };
+  });
+  orders = orders.sort((a, b) => {
+    return a.timestamp < b.timestamp ? 1 : a.timestamp > b.timestamp ? -1 : 0;
+  });
+
+  return orders;
+}

@@ -20,6 +20,7 @@ import DashboardContent from './DashboardContent';
 import CustomersPage from './CustomersPage';
 import { useDispatch } from 'react-redux';
 import { customersThunk } from '../../store/reducerCustomers';
+import OrdersPage from './OrdersPage';
 
 const drawerWidth = 240;
 
@@ -151,6 +152,7 @@ function AdminPage() {
             <Route path="" element={<DashboardContent />} />
             <Route path="slider" element={<SliderItems />} />
             <Route path="customers" element={<CustomersPage />} />
+            <Route path="orders" element={<OrdersPage />} />
           </Routes>
         </Container>
       </Box>

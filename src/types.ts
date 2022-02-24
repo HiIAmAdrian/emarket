@@ -40,4 +40,5 @@ export interface Order {
   shippingAddress: ShippingAddress;
   paymentDetails: PaymentDetails;
   shopCart: ShopItem[];
+  total: number;
 }

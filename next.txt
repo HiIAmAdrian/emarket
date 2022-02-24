@@ -1,12 +1,7 @@
-1. Add admin and its functionality
 2. Add remember me functionality
 3. Forgot password
-5. Add mini alerts for when: -not logged user clicks add to cart and shopping cart
-                             -logged user adds to cart
-                             -logged user adds to favorite
 7. make product list act like Masonry when details of a product are shown
 8. favorite list
 9. when clicked on shop logo redirect to products
 10. make my own backend api
-11. get the shop cart to checkout and checked out items to admin orders dashboard
 *. see emag for further inspiration

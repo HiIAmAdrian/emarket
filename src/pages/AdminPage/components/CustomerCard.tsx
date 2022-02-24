@@ -11,6 +11,7 @@ import {
 } from '@mui/material';
 import * as React from 'react';
 import { ADMIN, USER } from '../../../constants';
+import { getOrders } from '../../../services/storageHandle';
 import { ADMIN_NAME } from '../../../store/reducerAuth';
 import { Customer } from '../../../store/reducerCustomers';
 
@@ -46,6 +47,8 @@ function stringAvatar(name: string) {
 export default function CustomerCard(props: Customer) {
   const { id, email, username, name, address, phone } = props;
   const userRole = username === ADMIN_NAME ? ADMIN : USER;
+
+  getOrders();
 
   return (
     <Card
