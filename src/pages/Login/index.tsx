@@ -1,30 +1,30 @@
-import * as React from 'react';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import {
   Avatar,
-  Button,
-  TextField,
-  CssBaseline,
-  FormControlLabel,
-  Checkbox,
-  Link,
-  Grid,
   Box,
-  Typography,
+  Button,
+  Checkbox,
   Container,
   createTheme,
+  CssBaseline,
+  FormControlLabel,
+  Grid,
+  Link,
+  TextField,
   ThemeProvider,
+  Typography,
 } from '@mui/material';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import * as React from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { loginUserThunk } from '../../store/reducerAuth';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
+import Header from '../../common/components/Header';
 import {
   ADMIN,
   DONT_CLICK_URL,
   LOGGED,
 } from '../../common/variables/constants';
-import Header from '../../common/components/Header';
-import { useEffect } from 'react';
+import { loginUserThunk } from '../../store/reducerAuth';
 import { getUserAuthState, getUserRole } from '../../store/store';
 
 function Copyright() {

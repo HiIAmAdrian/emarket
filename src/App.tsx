@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react';
-import LoginSnackbar from './common/components/LoginSnackbar';
 import { useDispatch } from 'react-redux';
-import { getItems } from './store/reducerProducts';
-
+import LoginSnackbar from './common/components/LoginSnackbar';
 import RoutesApp from './Routes';
+import { getItems } from './store/reducerProducts';
 
 function App() {
   const dispatch = useDispatch();

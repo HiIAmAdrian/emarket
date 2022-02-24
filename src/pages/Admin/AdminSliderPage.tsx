@@ -3,7 +3,10 @@ import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 import * as React from 'react';
 import { useDispatch } from 'react-redux';
-import { getNbOfItems, setNbOfItems } from '../../services/storageHandle';
+import {
+  getNbOfItems,
+  setNbOfItems,
+} from '../../common/services/storageHandler';
 import { getItems } from '../../store/reducerProducts';
 
 export default function SliderItems() {

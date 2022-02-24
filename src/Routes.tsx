@@ -2,12 +2,12 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { ADMIN } from './common/variables/constants';
-import AdminPage from './pages/AdminPage/AdminPage';
-import Checkout from './pages/CheckoutPage/Checkout';
-import OrderPlaced from './pages/CheckoutPage/OrderPlaced';
-import LogIn from './pages/LoginPage/LogIn';
-import Products from './pages/ProductsPage/Products';
-import SignUp from './pages/SignupPage/SignUp';
+import AdminPage from './pages/Admin';
+import Checkout from './pages/Checkout';
+import OrderPlaced from './pages/Checkout/OrderPlaced';
+import LogIn from './pages/Login';
+import Products from './pages/Products';
+import SignUp from './pages/Signup/SignUp';
 import { getUserRole } from './store/store';
 
 function RoutesApp() {

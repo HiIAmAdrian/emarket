@@ -1,4 +1,4 @@
-import { ShopItem, Order } from '../common/variables/types';
+import { ShopItem, Order } from '../variables/types';
 
 export function getUserToken(): string {
   return JSON.parse(localStorage.getItem('userToken') as string);

@@ -1,10 +1,10 @@
+import MuiAlert, { AlertProps } from '@mui/material/Alert';
+import Snackbar from '@mui/material/Snackbar';
 import * as React from 'react';
+import { useSelector } from 'react-redux';
+import { useUpdateEffect } from 'react-use';
 import { getUserAuthState } from '../../store/store';
 import { LOGGED, NOT_LOGGED } from '../variables/constants';
-import Snackbar from '@mui/material/Snackbar';
-import MuiAlert, { AlertProps } from '@mui/material/Alert';
-import { useUpdateEffect } from 'react-use';
-import { useSelector } from 'react-redux';
 
 const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
   props,

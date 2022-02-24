@@ -4,17 +4,16 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
-import CssBaseline from '@mui/material/CssBaseline';
 import Paper from '@mui/material/Paper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Stepper from '@mui/material/Stepper';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { Order } from '../../common/variables/types';
 import { emptyShoppingCart } from '../../store/reducerAuth';
 import { processOrder } from '../../store/reducerCheckout';
 import {
@@ -23,7 +22,6 @@ import {
   getShopCartList,
   getShopCartTotalPrice,
 } from '../../store/store';
-import { Order } from '../../common/variables/types';
 import AddressForm from './components/AddressForm';
 import PaymentForm from './components/PaymentForm';
 import Review from './components/Review';
@@ -49,8 +47,6 @@ function getStepContent(step: number) {
       throw new Error('Unknown step');
   }
 }
-
-const theme = createTheme();
 
 export default function Checkout() {
   const [activeStep, setActiveStep] = React.useState(0);

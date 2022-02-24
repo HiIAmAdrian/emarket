@@ -1,12 +1,7 @@
-import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import * as React from 'react';
-import { getOrders } from '../../../services/storageHandle';
+import { getOrders } from '../../../common/services/storageHandler';
 import Title from './Title';
-
-function preventDefault(event: React.MouseEvent) {
-  event.preventDefault();
-}
 
 export default function Deposits() {
   const orderList = getOrders();

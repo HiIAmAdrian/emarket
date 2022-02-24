@@ -1,13 +1,13 @@
-import React from 'react';
-import { getShopList } from '../../store/store';
-import { useSelector } from 'react-redux';
-import ItemCard from './components/ItemCard';
-import { Alert, Grid } from '@mui/material';
-import { ShopItem } from '../../common/variables/types';
-import Header from '../../common/components/Header';
-import Snackbar from '@mui/material/Snackbar';
-import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
+import { Alert, Grid } from '@mui/material';
+import IconButton from '@mui/material/IconButton';
+import Snackbar from '@mui/material/Snackbar';
+import React from 'react';
+import { useSelector } from 'react-redux';
+import Header from '../../common/components/Header';
+import { ShopItem } from '../../common/variables/types';
+import { getShopList } from '../../store/store';
+import ItemCard from './components/ItemCard';
 
 function Products() {
   const list = useSelector(getShopList);

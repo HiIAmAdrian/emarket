@@ -1,4 +1,5 @@
 import DeleteIcon from '@mui/icons-material/Delete';
+import HeartBrokenIcon from '@mui/icons-material/HeartBroken';
 import {
   Card,
   CardContent,
@@ -17,7 +18,6 @@ import {
 } from '../../store/reducerAuth';
 import { deleteFromFavorites } from '../../store/reducerFavorites';
 import { SetQuantity, ShopItem } from '../variables/types';
-import HeartBrokenIcon from '@mui/icons-material/HeartBroken';
 
 interface ItemOnListProps {
   shopItem: ShopItem;
@@ -28,6 +28,7 @@ export default function ItemOnList({ shopItem, modalType }: ItemOnListProps) {
   const { id, title, price, image, quantity } = shopItem;
   const [totalPrice, setTotalPrice] = useState(price);
   const dispatch = useDispatch();
+  const [isQuantityNb, setIsQuantityNb] = useState(true);
 
   const handleQuantity = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(
@@ -37,6 +38,11 @@ export default function ItemOnList({ shopItem, modalType }: ItemOnListProps) {
       } as SetQuantity)
     );
     setTotalPrice(price * +e.currentTarget.value);
+    console.log(e.currentTarget.value);
+
+    if (!e.currentTarget.value) {
+      setIsQuantityNb(false);
+    } else setIsQuantityNb(true);
   };
 
   return (
@@ -78,6 +84,8 @@ export default function ItemOnList({ shopItem, modalType }: ItemOnListProps) {
             </Typography>
             <TextField
               id="outlined-number"
+              error={!isQuantityNb}
+              helperText={!isQuantityNb ? 'Not a number!' : ''}
               label="Quantity"
               type="number"
               onChange={handleQuantity}

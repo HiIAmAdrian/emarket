@@ -1,13 +1,15 @@
+import Link from '@mui/material/Link';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import * as React from 'react';
-import { getOrders } from '../../services/storageHandle';
-import Title from './components/Title';
+import { Link as RouterLink } from 'react-router-dom';
+import { getOrders } from '../../../common/services/storageHandler';
+import Title from './Title';
 
-export default function OrdersPage() {
+export default function Orders() {
   const orderList = getOrders();
   const title = orderList.length ? 'Recent Orders' : 'No Orders Placed';
 
@@ -26,18 +28,29 @@ export default function OrdersPage() {
               </TableRow>
             </TableHead>
             <TableBody>
-              {orderList.map((row) => (
-                <TableRow key={Math.random()}>
-                  <TableCell>{row.timestamp}</TableCell>
-                  <TableCell>{row.paymentDetails.cardHolder}</TableCell>
-                  <TableCell>{'card'}</TableCell>
-                  <TableCell align="right">{`${row.total.toFixed(
-                    2
-                  )} Lei`}</TableCell>
-                </TableRow>
-              ))}
+              {orderList.map((row, index) => {
+                if (index > 5) return;
+
+                return (
+                  <TableRow key={Math.random()}>
+                    <TableCell>{row.timestamp}</TableCell>
+                    <TableCell>{row.paymentDetails.cardHolder}</TableCell>
+                    <TableCell>{'card'}</TableCell>
+                    <TableCell align="right">{`${row.total.toFixed(
+                      2
+                    )} Lei`}</TableCell>
+                  </TableRow>
+                );
+              })}
             </TableBody>
           </Table>
+          <Link
+            sx={{ textDecoration: 'none' }}
+            component={RouterLink}
+            to="orders"
+          >
+            See more orders
+          </Link>
         </React.Fragment>
       ) : (
         <div></div>

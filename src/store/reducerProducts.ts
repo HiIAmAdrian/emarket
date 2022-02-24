@@ -5,8 +5,8 @@ import {
   LOADING,
   NOT_LOADING,
 } from '../common/variables/constants';
-import { getNbOfItems } from '../services/storageHandle';
 import { ShopItem } from '../common/variables/types';
+import { getNbOfItems } from '../common/services/storageHandler';
 
 export const getItems = createAsyncThunk('products/getItems', async () => {
   const limit = getNbOfItems() ? getNbOfItems() : 20;

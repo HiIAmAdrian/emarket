@@ -1,10 +1,10 @@
-import { AppBar, Toolbar } from '@mui/material';
-import BasicMenu from './BasicMenu';
-import ShoppingCart from './ShoppingCart';
 import StorefrontSharpIcon from '@mui/icons-material/StorefrontSharp';
-import React from 'react';
-import FavoriteList from './FavoriteList';
+import { AppBar, Toolbar } from '@mui/material';
 import { Box } from '@mui/system';
+import React from 'react';
+import BasicMenu from './BasicMenu';
+import FavoriteList from './FavoriteList';
+import ShoppingCart from './ShoppingCart';
 
 function Header() {
   return (

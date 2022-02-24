@@ -1,10 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { setOrder } from '../services/storageHandle';
 import {
-  ShippingAddress,
-  PaymentDetails,
   Order,
+  PaymentDetails,
+  ShippingAddress,
 } from '../common/variables/types';
+import { setOrder } from '../common/services/storageHandler';
 
 interface CheckoutSliceState {
   address: ShippingAddress;

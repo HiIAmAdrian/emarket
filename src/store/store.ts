@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
 import auth from './reducerAuth';
-import shopList from './reducerProducts';
 import checkout from './reducerCheckout';
 import customers from './reducerCustomers';
 import favorites from './reducerFavorites';
+import shopList from './reducerProducts';
 
 const store = configureStore({
   reducer: {

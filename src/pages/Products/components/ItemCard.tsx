@@ -18,13 +18,13 @@ import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { LOGGED } from '../../../common/variables/constants';
+import { ShopItem } from '../../../common/variables/types';
 import { addToShopCart } from '../../../store/reducerAuth';
 import {
   addToFavoritesList,
   deleteFromFavorites,
 } from '../../../store/reducerFavorites';
 import { getFavorites, getUserAuthState } from '../../../store/store';
-import { ShopItem } from '../../../common/variables/types';
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
