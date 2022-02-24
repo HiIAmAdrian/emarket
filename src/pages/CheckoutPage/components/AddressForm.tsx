@@ -11,7 +11,6 @@ export default function AddressForm() {
   const address = useSelector(getAddressObject);
 
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
-    console.log(event.target.value);
     dispatch(
       setAdressDetail({ field: event.target.name, detail: event.target.value })
     );

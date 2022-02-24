@@ -13,7 +13,6 @@ export default function PaymentForm() {
   const paymentDetails = useSelector(getPaymentDetailObject);
 
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
-    console.log(event.target.value);
     dispatch(
       setPaymentDetail({ field: event.target.name, detail: event.target.value })
     );

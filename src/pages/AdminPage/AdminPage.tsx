@@ -17,6 +17,9 @@ import BasicMenu from '../../common/BasicMenu';
 import { mainListItems, secondaryListItems } from './components/ListItems';
 import SliderItems from './AdminSliderPage';
 import DashboardContent from './DashboardContent';
+import CustomersPage from './CustomersPage';
+import { useDispatch } from 'react-redux';
+import { customersThunk } from '../../store/reducerCustomers';
 
 const drawerWidth = 240;
 
@@ -70,9 +73,12 @@ const Drawer = styled(MuiDrawer, {
 
 function AdminPage() {
   const [open, setOpen] = React.useState(true);
+  const dispatch = useDispatch();
   const toggleDrawer = () => {
     setOpen(!open);
   };
+
+  dispatch(customersThunk());
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -144,6 +150,7 @@ function AdminPage() {
           <Routes>
             <Route path="" element={<DashboardContent />} />
             <Route path="slider" element={<SliderItems />} />
+            <Route path="customers" element={<CustomersPage />} />
           </Routes>
         </Container>
       </Box>

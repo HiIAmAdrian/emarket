@@ -19,7 +19,7 @@ import {
 } from '../services/storageHandle';
 import { SetQuantity, ShopItem } from '../types';
 
-const ADMIN_NAME = 'mor_2314';
+export const ADMIN_NAME = 'mor_2314';
 
 interface LogInAction {
   token: string;

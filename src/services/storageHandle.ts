@@ -34,7 +34,6 @@ export function setNbOfItems(nb: string): void {
 
 export function setOrder(order: Order): void {
   const lastOrderId = new Date().toISOString();
-  console.log(lastOrderId);
   localStorage.setItem(`orderId: ${lastOrderId}`, JSON.stringify(order));
 }
 

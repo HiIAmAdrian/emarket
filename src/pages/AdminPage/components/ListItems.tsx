@@ -28,12 +28,14 @@ export const mainListItems = (
       </ListItemIcon>
       <ListItemText primary="Orders" />
     </ListItemButton>
-    <ListItemButton>
-      <ListItemIcon>
-        <PeopleIcon />
-      </ListItemIcon>
-      <ListItemText primary="Customers" />
-    </ListItemButton>
+    <Link sx={{ textDecoration: 'none' }} component={RouterLink} to="customers">
+      <ListItemButton>
+        <ListItemIcon>
+          <PeopleIcon />
+        </ListItemIcon>
+        <ListItemText primary="Customers" />
+      </ListItemButton>
+    </Link>
     <Link sx={{ textDecoration: 'none' }} component={RouterLink} to="slider">
       <ListItemButton>
         <ListItemIcon>

@@ -2,13 +2,14 @@ import { configureStore } from '@reduxjs/toolkit';
 import auth from './reducerAuth';
 import shopList from './reducerProducts';
 import checkout from './reducerCheckout';
-import { ShippingAddress, PaymentDetails } from '../types';
+import customers from './reducerCustomers';
 
 const store = configureStore({
   reducer: {
     shopList: shopList.reducer,
     auth: auth.reducer,
     checkout: checkout.reducer,
+    customers: customers.reducer,
   },
 });
 
@@ -41,5 +42,6 @@ export const getPaymentDetailObject = (state: RootState) =>
   state.checkout.paymentDetails;
 export const getCurrentSessionNbOrders = (state: RootState) =>
   state.checkout.currentSessionOrders;
+export const getCustomersList = (state: RootState) => state.customers.customers;
 
 export default store;
