@@ -13,7 +13,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import * as React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import BasicMenu from '../../common/BasicMenu';
+import BasicMenu from '../../common/components/BasicMenu';
 import { mainListItems, secondaryListItems } from './components/ListItems';
 import SliderItems from './AdminSliderPage';
 import DashboardContent from './DashboardContent';

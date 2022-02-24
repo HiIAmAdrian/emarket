@@ -17,10 +17,14 @@ import {
 import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { LOGGED } from '../../../constants';
+import { LOGGED } from '../../../common/variables/constants';
 import { addToShopCart } from '../../../store/reducerAuth';
-import { getUserAuthState } from '../../../store/store';
-import { ShopItem } from '../../../types';
+import {
+  addToFavoritesList,
+  deleteFromFavorites,
+} from '../../../store/reducerFavorites';
+import { getFavorites, getUserAuthState } from '../../../store/store';
+import { ShopItem } from '../../../common/variables/types';
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
@@ -40,19 +44,57 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 }));
 
 interface ItemCardProps extends ShopItem {
-  handleClick: () => void;
+  handleClick: (snack: string) => void;
 }
 
 export default function ItemCard(props: ItemCardProps) {
-  const { title, price, description, category, image, rating, handleClick } =
-    props;
+  const {
+    id,
+    title,
+    price,
+    description,
+    category,
+    image,
+    rating,
+    handleClick,
+  } = props;
   const [expanded, setExpanded] = React.useState(false);
+  const [favorite, setFavorite] = React.useState(false);
   const isLoggedIn = useSelector(getUserAuthState);
+  const favoriteList = useSelector(getFavorites);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  React.useEffect(() => {
+    if (!favoriteList.find((item) => item.id === id)) setFavorite(false);
+  }, [favoriteList.find((item) => item.id === id)]);
+
   const handleExpandClick = () => {
     setExpanded(!expanded);
+  };
+
+  const handleAddToCart = () => {
+    if (isLoggedIn === LOGGED) {
+      const shopItem: Partial<ItemCardProps> = Object.assign({}, { ...props });
+      delete shopItem.handleClick;
+      dispatch(addToShopCart(shopItem as ShopItem));
+      handleClick('cart');
+    } else {
+      navigate('/login');
+    }
+  };
+
+  const handleFavorite = () => {
+    if (!favorite) {
+      const shopItem: Partial<ItemCardProps> = Object.assign({}, { ...props });
+      delete shopItem.handleClick;
+      dispatch(addToFavoritesList(shopItem as ShopItem));
+      handleClick('favorite');
+      setFavorite(true);
+    } else {
+      dispatch(deleteFromFavorites(id));
+      setFavorite(false);
+    }
   };
 
   return (
@@ -94,26 +136,11 @@ export default function ItemCard(props: ItemCardProps) {
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton
-          onClick={
-            isLoggedIn === LOGGED
-              ? () => {
-                  const shopItem: Partial<ItemCardProps> = Object.assign(
-                    {},
-                    { ...props }
-                  );
-                  delete shopItem.handleClick;
-                  dispatch(addToShopCart(shopItem as ShopItem));
-                  handleClick();
-                }
-              : () => navigate('/login')
-          }
-          aria-label="share"
-        >
+        <IconButton onClick={handleAddToCart} aria-label="share">
           <AddShoppingCartIcon />
         </IconButton>
-        <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
+        <IconButton aria-label="add to favorites" onClick={handleFavorite}>
+          <FavoriteIcon sx={{ color: favorite ? 'red' : 'gray' }} />
         </IconButton>
         <ExpandMore
           expand={expanded}

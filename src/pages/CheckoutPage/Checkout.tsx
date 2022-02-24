@@ -23,7 +23,7 @@ import {
   getShopCartList,
   getShopCartTotalPrice,
 } from '../../store/store';
-import { Order } from '../../types';
+import { Order } from '../../common/variables/types';
 import AddressForm from './components/AddressForm';
 import PaymentForm from './components/PaymentForm';
 import Review from './components/Review';

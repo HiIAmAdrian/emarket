@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { getUserAuthState } from '../store/store';
-import { LOGGED, NOT_LOGGED } from '../constants';
+import { getUserAuthState } from '../../store/store';
+import { LOGGED, NOT_LOGGED } from '../variables/constants';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert, { AlertProps } from '@mui/material/Alert';
 import { useUpdateEffect } from 'react-use';

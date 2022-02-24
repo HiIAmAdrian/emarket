@@ -18,8 +18,12 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginUserThunk } from '../../store/reducerAuth';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
-import { ADMIN, DONT_CLICK_URL, LOGGED } from '../../constants';
-import Header from '../../common/Header';
+import {
+  ADMIN,
+  DONT_CLICK_URL,
+  LOGGED,
+} from '../../common/variables/constants';
+import Header from '../../common/components/Header';
 import { useEffect } from 'react';
 import { getUserAuthState, getUserRole } from '../../store/store';
 

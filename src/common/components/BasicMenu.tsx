@@ -3,10 +3,11 @@ import { Button, Link, Menu, MenuItem } from '@mui/material';
 import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
-import { ADMIN, LOGGED, USER } from '../constants';
-import { logout } from '../store/reducerAuth';
-import { getUserAuthState, getUserRole } from '../store/store';
-import theme from '../theme';
+import { ADMIN, LOGGED, USER } from '../variables/constants';
+import { logout } from '../../store/reducerAuth';
+import { getUserAuthState, getUserRole } from '../../store/store';
+import theme from '../../theme';
+import ShoppingCart from './ShoppingCart';
 
 export default function BasicMenu() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);

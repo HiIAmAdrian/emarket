@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
-import { ADMIN } from './constants';
+import { ADMIN } from './common/variables/constants';
 import AdminPage from './pages/AdminPage/AdminPage';
 import Checkout from './pages/CheckoutPage/Checkout';
 import OrderPlaced from './pages/CheckoutPage/OrderPlaced';

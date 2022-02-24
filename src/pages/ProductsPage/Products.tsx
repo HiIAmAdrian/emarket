@@ -3,8 +3,8 @@ import { getShopList } from '../../store/store';
 import { useSelector } from 'react-redux';
 import ItemCard from './components/ItemCard';
 import { Alert, Grid } from '@mui/material';
-import { ShopItem } from '../../types';
-import Header from '../../common/Header';
+import { ShopItem } from '../../common/variables/types';
+import Header from '../../common/components/Header';
 import Snackbar from '@mui/material/Snackbar';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
@@ -12,8 +12,10 @@ import CloseIcon from '@mui/icons-material/Close';
 function Products() {
   const list = useSelector(getShopList);
   const [open, setOpen] = React.useState(false);
+  const [snack, setSnack] = React.useState('');
 
-  const handleClick = () => {
+  const handleClick = (snackProp: string) => {
+    setSnack(snackProp);
     setOpen(true);
   };
 
@@ -25,6 +27,7 @@ function Products() {
       return;
     }
 
+    setSnack('');
     setOpen(false);
   };
 
@@ -77,7 +80,11 @@ function Products() {
         action={action}
       >
         <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
-          Item added to cart!
+          {snack === 'cart'
+            ? 'Item added to cart!'
+            : snack === 'favorite'
+            ? 'Item added to favorites list!'
+            : ''}
         </Alert>
       </Snackbar>
     </Grid>

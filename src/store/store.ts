@@ -3,6 +3,7 @@ import auth from './reducerAuth';
 import shopList from './reducerProducts';
 import checkout from './reducerCheckout';
 import customers from './reducerCustomers';
+import favorites from './reducerFavorites';
 
 const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ const store = configureStore({
     auth: auth.reducer,
     checkout: checkout.reducer,
     customers: customers.reducer,
+    favorites: favorites.reducer,
   },
 });
 
@@ -43,5 +45,14 @@ export const getPaymentDetailObject = (state: RootState) =>
 export const getCurrentSessionNbOrders = (state: RootState) =>
   state.checkout.currentSessionOrders;
 export const getCustomersList = (state: RootState) => state.customers.customers;
+export const getFavorites = (state: RootState) => state.favorites.favoritesList;
+export const getTotalFavorites = (state: RootState) => {
+  let sum = 0;
+  state.favorites.favoritesList.forEach((item: { quantity: number }) => {
+    sum += item.quantity;
+  });
+
+  return sum;
+};
 
 export default store;

@@ -8,7 +8,7 @@ import {
   LOGIN_URL,
   NOT_LOGGED,
   USER,
-} from '../constants';
+} from '../common/variables/constants';
 import {
   getUserName,
   getUserToken,
@@ -17,7 +17,7 @@ import {
   setUserName,
   setUserToken,
 } from '../services/storageHandle';
-import { SetQuantity, ShopItem } from '../types';
+import { SetQuantity, ShopItem } from '../common/variables/types';
 
 export const ADMIN_NAME = 'mor_2314';
 

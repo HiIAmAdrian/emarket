@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import LoginSnackbar from './common/LoginSnackbar';
+import LoginSnackbar from './common/components/LoginSnackbar';
 import { useDispatch } from 'react-redux';
 import { getItems } from './store/reducerProducts';
 

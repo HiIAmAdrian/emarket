@@ -16,9 +16,9 @@ import {
   getShopCartList,
   getShopCartTotalItems,
   getShopCartTotalPrice,
-} from '../store/store';
-import { ShopItem } from '../types';
-import ItemShopCart from './ItemShopCart';
+} from '../../store/store';
+import { ShopItem } from '../variables/types';
+import ItemOnList from './ItemOnList';
 
 export default function ShoppingCart() {
   const [open, setOpen] = React.useState(false);
@@ -32,7 +32,7 @@ export default function ShoppingCart() {
   function createShopCartGridElement(shopCartObj: ShopItem) {
     return (
       <Grid key={shopCartObj.id} xs={12} item>
-        <ItemShopCart {...shopCartObj} />
+        <ItemOnList shopItem={shopCartObj} modalType="cart" />
       </Grid>
     );
   }

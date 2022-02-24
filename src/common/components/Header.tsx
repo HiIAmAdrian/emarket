@@ -3,6 +3,8 @@ import BasicMenu from './BasicMenu';
 import ShoppingCart from './ShoppingCart';
 import StorefrontSharpIcon from '@mui/icons-material/StorefrontSharp';
 import React from 'react';
+import FavoriteList from './FavoriteList';
+import { Box } from '@mui/system';
 
 function Header() {
   return (
@@ -19,7 +21,10 @@ function Header() {
       >
         <BasicMenu />
         <StorefrontSharpIcon />
-        <ShoppingCart />
+        <Box>
+          <FavoriteList />
+          <ShoppingCart />
+        </Box>
       </AppBar>
       <Toolbar />
     </React.Fragment>

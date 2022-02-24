@@ -10,7 +10,7 @@ import {
   Typography,
 } from '@mui/material';
 import * as React from 'react';
-import { ADMIN, USER } from '../../../constants';
+import { ADMIN, USER } from '../../../common/variables/constants';
 import { getOrders } from '../../../services/storageHandle';
 import { ADMIN_NAME } from '../../../store/reducerAuth';
 import { Customer } from '../../../store/reducerCustomers';

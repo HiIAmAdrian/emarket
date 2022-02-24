@@ -1,6 +1,10 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { BACKEND_URL, LOADING, NOT_LOADING } from '../constants';
+import {
+  BACKEND_URL,
+  LOADING,
+  NOT_LOADING,
+} from '../common/variables/constants';
 
 interface Geolocation {
   lat: string;

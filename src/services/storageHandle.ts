@@ -1,4 +1,4 @@
-import { ShopItem, Order } from '../types';
+import { ShopItem, Order } from '../common/variables/types';
 
 export function getUserToken(): string {
   return JSON.parse(localStorage.getItem('userToken') as string);
@@ -65,7 +65,7 @@ export function getOrders() {
     };
   });
   orders = orders.sort((a, b) => {
-    return a.timestamp < b.timestamp ? 1 : a.timestamp > b.timestamp ? -1 : 0;
+    return a.timestamp < b.timestamp ? -1 : a.timestamp > b.timestamp ? 1 : 0;
   });
 
   return orders;
